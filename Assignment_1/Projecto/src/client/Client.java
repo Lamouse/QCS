@@ -6,7 +6,13 @@ class Client {
 	public static void main(String[] args) {
 		InsulinDoseCalculatorService service = new InsulinDoseCalculatorService();
 		InsulinDoseCalculator proxy = service.getInsulinDoseCalculatorPort();
-		int mealtimeInsulinDose = proxy.mealtimeInsulinDose(0, 0, 0, 0, 0);
+		//int mealtimeInsulinDose = proxy.mealtimeInsulinDose(0, 0, 0, 0, 0);
+		//System.out.println("Meal time Insulin Dose: " + mealtimeInsulinDose);
+
+		int[] myIntArray = {2, 5, 3, 4};
+		int[] myIntArray1 = {30, 75, 42, 61};
+
+		int mealtimeInsulinDose = proxy.personalSensitivityToInsulin(5, arrayToList(myIntArray), arrayToList(myIntArray1));
 		System.out.println("Meal time Insulin Dose: " + mealtimeInsulinDose);
 	}
 	
@@ -25,6 +31,13 @@ class Client {
 	static List<Integer> arrayToList(int[] array) {
 		List<Integer> list = new ArrayList<Integer>();
 		for(int i : array)
+			list.add(i);
+		return list;
+	}
+
+	static List<Double> arrayToList(double[] array) {
+		List<Double> list = new ArrayList<Double>();
+		for (double i : array)
 			list.add(i);
 		return list;
 	}

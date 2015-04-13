@@ -39,8 +39,19 @@ public class InsulinDoseCalculator {
 	 * @return the mealtime units of insulin needed, or -1 in case of error
 	 */
 	@WebMethod
-	public int mealtimeInsulinDose(int carbohydrateAmount, int carbohydrateToInsulinRatio, int preMealBloodSugar, int targetBloodSugar, int personalSensitivity){
-		return -1;
+	public int mealtimeInsulinDose(int carbohydrateAmount, int carbohydrateToInsulinRatio, int preMealBloodSugar, int targetBloodSugar, int personalSensitivity) {
+		double carbohydrate_dose, high_blood_sugar_dose;
+
+		if (carbohydrateAmount < 0 || carbohydrateToInsulinRatio < 0 || preMealBloodSugar < 0 || targetBloodSugar < 0 || personalSensitivity < 0)
+			return -1;
+		else if (targetBloodSugar > preMealBloodSugar)
+			return 0;
+		else {
+			carbohydrate_dose = carbohydrateAmount / carbohydrateToInsulinRatio / personalSensitivity * 50;
+			high_blood_sugar_dose = (preMealBloodSugar - targetBloodSugar) / personalSensitivity;
+
+			return (int) Math.round(carbohydrate_dose + high_blood_sugar_dose);
+		}
 	}
 
 	/**
@@ -56,7 +67,9 @@ public class InsulinDoseCalculator {
 	 */
 	@WebMethod
 	public int backgroundInsulinDose(int bodyWeight){
-		return -1;
+		if (bodyWeight < 0)
+			return -1;
+		return (int) Math.round(0.55 * bodyWeight);
 	}
 	
 	/**
@@ -85,7 +98,28 @@ public class InsulinDoseCalculator {
 	 */
 	@WebMethod
 	public int personalSensitivityToInsulin(int physicalActivityLevel, int[] physicalActivitySamples, int[] bloodSugarDropSamples){
-		return -1;
+		int i, sx=0, sy=0, sxx=0, sxy=0, syy=0, n;
+		double alpha, beta;
+
+		if (physicalActivityLevel < 0 || physicalActivityLevel > 10 || physicalActivitySamples.length != bloodSugarDropSamples.length || physicalActivitySamples.length == 0)
+			return -1;
+
+		n = physicalActivitySamples.length;
+		for(i=0; i<n; i++) {
+			if(physicalActivitySamples[i] < 0 || physicalActivitySamples[i] > 10 || bloodSugarDropSamples[i] < 0)
+				return -1;
+
+			sx += physicalActivitySamples[i];
+			sy += bloodSugarDropSamples[i];
+			sxx += physicalActivitySamples[i]*physicalActivitySamples[i];
+			syy += bloodSugarDropSamples[i]*bloodSugarDropSamples[i];
+			sxy += physicalActivitySamples[i]*bloodSugarDropSamples[i];
+		}
+
+		beta = (n*sxy - sx*sy) / (n*sxx - sx*sx);
+		alpha = sy/n - beta*sx/n;
+
+		return (int) Math.round(alpha + beta * physicalActivityLevel);
 	}
 
 
