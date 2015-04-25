@@ -42,12 +42,15 @@ public class InsulinDoseCalculator {
 	public int mealtimeInsulinDose(int carbohydrateAmount, int carbohydrateToInsulinRatio, int preMealBloodSugar, int targetBloodSugar, int personalSensitivity) {
 		double carbohydrate_dose, high_blood_sugar_dose;
 
-		if (carbohydrateAmount < 0 || carbohydrateToInsulinRatio < 0 || preMealBloodSugar < 0 || targetBloodSugar < 0 || personalSensitivity < 0)
-			return -1;
+		if (carbohydrateAmount < 60 || carbohydrateAmount > 150 || carbohydrateToInsulinRatio < 10
+				|| carbohydrateToInsulinRatio > 15 || preMealBloodSugar < 120 || preMealBloodSugar > 250
+				||targetBloodSugar < 80 || targetBloodSugar > 120  || personalSensitivity < 15
+				|| personalSensitivity > 100)
+			return 0;
 		else if (targetBloodSugar > preMealBloodSugar)
 			return 0;
 		else {
-			carbohydrate_dose = carbohydrateAmount / carbohydrateToInsulinRatio / personalSensitivity * 50;
+			carbohydrate_dose = 50 * carbohydrateAmount / carbohydrateToInsulinRatio / personalSensitivity;
 			high_blood_sugar_dose = (preMealBloodSugar - targetBloodSugar) / personalSensitivity;
 
 			return (int) Math.round(carbohydrate_dose + high_blood_sugar_dose);
@@ -67,9 +70,9 @@ public class InsulinDoseCalculator {
 	 */
 	@WebMethod
 	public int backgroundInsulinDose(int bodyWeight){
-		if (bodyWeight < 0)
-			return -1;
-		return (int) Math.round(0.55 * bodyWeight);
+		if (bodyWeight < 60 || bodyWeight > 120)
+			return 0;
+		return (int) Math.round(0.55 * bodyWeight * 0.5);
 	}
 	
 	/**
@@ -102,12 +105,12 @@ public class InsulinDoseCalculator {
 		double alpha, beta;
 
 		if (physicalActivityLevel < 0 || physicalActivityLevel > 10 || physicalActivitySamples.length != bloodSugarDropSamples.length || physicalActivitySamples.length == 0)
-			return -1;
+			return 0;
 
 		n = physicalActivitySamples.length;
 		for(i=0; i<n; i++) {
-			if(physicalActivitySamples[i] < 0 || physicalActivitySamples[i] > 10 || bloodSugarDropSamples[i] < 0)
-				return -1;
+			if(physicalActivitySamples[i] < 0 || physicalActivitySamples[i] > 10 || bloodSugarDropSamples[i] < 15 || bloodSugarDropSamples[i] > 100)
+				return 0;
 
 			sx += physicalActivitySamples[i];
 			sy += bloodSugarDropSamples[i];
@@ -116,9 +119,12 @@ public class InsulinDoseCalculator {
 			sxy += physicalActivitySamples[i]*bloodSugarDropSamples[i];
 		}
 
+		//beta = (n*sxy - sx*sy) / (n*sxx - sx*sx);
+		//alpha = sy/n - beta*sx/n;
 		beta = (n*sxy - sx*sy) / (n*sxx - sx*sx);
-		alpha = sy/n - beta*sx/n;
+		alpha = (sy - beta*sx)/n;
 
+		System.out.println((alpha + beta * physicalActivityLevel));
 		return (int) Math.round(alpha + beta * physicalActivityLevel);
 	}
 
