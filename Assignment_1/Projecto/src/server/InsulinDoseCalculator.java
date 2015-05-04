@@ -153,7 +153,7 @@ public class InsulinDoseCalculator {
 
 	public static void main(String[] args) {
 		InsulinDoseCalculator insulin = new InsulinDoseCalculator();
-		Endpoint endpoint = Endpoint.publish("http://localhost:8081/insulin", insulin);
+		Endpoint endpoint = Endpoint.publish("http://localhost:8080/insulin", insulin);
 	}
 }
 

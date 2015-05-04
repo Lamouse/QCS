@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "InsulinDoseCalculatorService", targetNamespace = "http://server/", wsdlLocation = "http://localhost:8081/insulin?wsdl")
+@WebServiceClient(name = "InsulinDoseCalculatorService", targetNamespace = "http://server/", wsdlLocation = "http://localhost:8080/insulin?wsdl")
 public class InsulinDoseCalculatorService
     extends Service
 {
@@ -30,7 +30,7 @@ public class InsulinDoseCalculatorService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8081/insulin?wsdl");
+            url = new URL("http://localhost:8080/insulin?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

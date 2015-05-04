@@ -6,17 +6,17 @@
       <xsd:import namespace="http://server/" schemaLocation="InsulinDoseCalculatorPortType_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="mealtimeInsulinDose">
-    <part name="parameters" element="tns:mealtimeInsulinDose"/>
-  </message>
-  <message name="mealtimeInsulinDoseResponse">
-    <part name="parameters" element="tns:mealtimeInsulinDoseResponse"/>
-  </message>
   <message name="backgroundInsulinDose">
     <part name="parameters" element="tns:backgroundInsulinDose"/>
   </message>
   <message name="backgroundInsulinDoseResponse">
     <part name="parameters" element="tns:backgroundInsulinDoseResponse"/>
+  </message>
+  <message name="mealtimeInsulinDose">
+    <part name="parameters" element="tns:mealtimeInsulinDose"/>
+  </message>
+  <message name="mealtimeInsulinDoseResponse">
+    <part name="parameters" element="tns:mealtimeInsulinDoseResponse"/>
   </message>
   <message name="personalSensitivityToInsulin">
     <part name="parameters" element="tns:personalSensitivityToInsulin"/>
@@ -25,13 +25,13 @@
     <part name="parameters" element="tns:personalSensitivityToInsulinResponse"/>
   </message>
   <portType name="InsulinDoseCalculator">
-    <operation name="mealtimeInsulinDose">
-      <input ns1:Action="http://server/InsulinDoseCalculator/mealtimeInsulinDoseRequest" message="tns:mealtimeInsulinDose" xmlns:ns1="http://www.w3.org/2007/05/addressing/metadata"/>
-      <output ns2:Action="http://server/InsulinDoseCalculator/mealtimeInsulinDoseResponse" message="tns:mealtimeInsulinDoseResponse" xmlns:ns2="http://www.w3.org/2007/05/addressing/metadata"/>
-    </operation>
     <operation name="backgroundInsulinDose">
-      <input ns3:Action="http://server/InsulinDoseCalculator/backgroundInsulinDoseRequest" message="tns:backgroundInsulinDose" xmlns:ns3="http://www.w3.org/2007/05/addressing/metadata"/>
-      <output ns4:Action="http://server/InsulinDoseCalculator/backgroundInsulinDoseResponse" message="tns:backgroundInsulinDoseResponse" xmlns:ns4="http://www.w3.org/2007/05/addressing/metadata"/>
+      <input ns1:Action="http://server/InsulinDoseCalculator/backgroundInsulinDoseRequest" message="tns:backgroundInsulinDose" xmlns:ns1="http://www.w3.org/2007/05/addressing/metadata"/>
+      <output ns2:Action="http://server/InsulinDoseCalculator/backgroundInsulinDoseResponse" message="tns:backgroundInsulinDoseResponse" xmlns:ns2="http://www.w3.org/2007/05/addressing/metadata"/>
+    </operation>
+    <operation name="mealtimeInsulinDose">
+      <input ns3:Action="http://server/InsulinDoseCalculator/mealtimeInsulinDoseRequest" message="tns:mealtimeInsulinDose" xmlns:ns3="http://www.w3.org/2007/05/addressing/metadata"/>
+      <output ns4:Action="http://server/InsulinDoseCalculator/mealtimeInsulinDoseResponse" message="tns:mealtimeInsulinDoseResponse" xmlns:ns4="http://www.w3.org/2007/05/addressing/metadata"/>
     </operation>
     <operation name="personalSensitivityToInsulin">
       <input ns5:Action="http://server/InsulinDoseCalculator/personalSensitivityToInsulinRequest" message="tns:personalSensitivityToInsulin" xmlns:ns5="http://www.w3.org/2007/05/addressing/metadata"/>
