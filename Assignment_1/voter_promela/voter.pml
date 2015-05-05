@@ -1,15 +1,22 @@
 #define N 3
+#define range 1
 short results[N];
 
 proctype P(int n) {
 	short temp;
 
 	//1-2	- correct result
-	//3		- incorrect result
-	//4		- incorrect input
-	//5		- timeout
+	//4		- incorrect result
+	//6		- incorrect input
+	//8		- timeout
 
-	select (temp : 1 .. 5);
+	if
+	:: temp = 1;
+	:: temp = 2;
+	:: temp = 4;
+	:: temp = 6;
+	:: temp = 8;
+	fi
 
 	if
 	:: n == -1 -> results[_pid-1] = temp;
@@ -37,7 +44,7 @@ init {
 		atomic {
 			for(i : 0..(N-1)) {
 				if
-				:: results[i] == 5 -> run P(i);
+				:: results[i] == 8 -> run P(i);
 				:: else -> cont = cont + 1;
 				fi
 			}
@@ -66,10 +73,12 @@ init {
 
 		if
 		::cont == 1 -> skip;
-		::else -> 	cont = 1;
-					for(y : (i+1)..(N-1)) {
+		::else -> 	cont = 0;
+					for(y : 0..(N-1)) {
 					if
 					:: results[i] == results[y] -> cont = cont + 1;
+					:: results[i] == results[y] - range -> cont = cont + 1;
+					:: results[i] == results[y] + range -> cont = cont + 1;
 					:: else -> skip;
 					fi
 					}
@@ -84,28 +93,28 @@ init {
 	for(i : 0..(N-1)) {
 		printf("%d\n", results[i]);
 	}
-
 	printf("values and frequencies (%d)\n", index);
 	for(i : 0..(index-1)) {
 		printf("%d: %d\n", value[i], freq[i]);
 	}
+
 
 	if
 	:: N%2 == 0 -> cont = N/2;
 	:: else -> cont = N/2 + 1;
 	fi
 
-	y = -1;
+	y = 999;
 	for(i : 0..(index-1)) {
 		if 
-		::freq[i] >= cont -> y = value[i]; break;
+		::freq[i] >= cont && value[i] < y -> y = value[i]; cont = freq[i];
 		::else -> skip;
 		fi
 	}
 
 	printf("\n\n\n");
 	if 
-	::y == -1 -> printf("Unable to find results\n");
+	::y == 999 -> printf("Unable to find results\n");
 	::else -> printf("%d\n", y);
 	fi
 }
