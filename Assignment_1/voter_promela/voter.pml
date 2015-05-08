@@ -29,6 +29,7 @@ init {
 	int i, y, cont, index;
 	int value[N], freq[N]; 
 
+	//first execution
 	atomic {
 		for(i : 0..(N-1)) {
 			run P(-1);
@@ -39,7 +40,8 @@ init {
 
 
 	//take care of timeouts
-	for(y : 0..2) {
+	//max more two executions
+	for(y : 0..1) {
 		cont = 0;
 		atomic {
 			for(i : 0..(N-1)) {
@@ -59,7 +61,7 @@ init {
 	}
 
 
-	//voter
+	//calculate the frequency of each result
 	index = 0;
 	for(i : 0..(N-1)) {
 		//check if value already viewed
@@ -89,7 +91,7 @@ init {
 	}
 
 
-	//just for test
+	//prints just for test
 	for(i : 0..(N-1)) {
 		printf("%d\n", results[i]);
 	}
@@ -99,6 +101,7 @@ init {
 	}
 
 
+	//display the most frequent result if its frequency is equal or bigger than half of the total elements
 	if
 	:: N%2 == 0 -> cont = N/2;
 	:: else -> cont = N/2 + 1;
