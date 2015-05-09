@@ -5,17 +5,15 @@ short results[N];
 proctype P(int n) {
 	short temp;
 
-	//1-2	- correct result
-	//4		- incorrect result
-	//6		- incorrect input
-	//8		- timeout
+	//0		- default
+	//2-3	- correct result
+	//5		- incorrect result
 
 	if
-	:: temp = 1;
 	:: temp = 2;
-	:: temp = 4;
-	:: temp = 6;
-	:: temp = 8;
+	:: temp = 3;
+	:: temp = 5;
+	:: temp = (timeout);
 	fi
 
 	if
@@ -46,7 +44,7 @@ init {
 		atomic {
 			for(i : 0..(N-1)) {
 				if
-				:: results[i] == 8 -> run P(i);
+				:: results[i] == 0 -> run P(i);
 				:: else -> cont = cont + 1;
 				fi
 			}
@@ -90,15 +88,15 @@ init {
 		fi
 	}
 
-
+	printf("Results: ")
 	//prints just for test
 	for(i : 0..(N-1)) {
-		printf("%d\n", results[i]);
+		printf("%d ", results[i]);
 	}
-	printf("values and frequencies (%d)\n", index);
-	for(i : 0..(index-1)) {
-		printf("%d: %d\n", value[i], freq[i]);
-	}
+	// printf("values and frequencies (%d)\n", index);
+	// for(i : 0..(index-1)) {
+	// 	 printf("%d: %d\n", value[i], freq[i]);
+	// }
 
 
 	//display the most frequent result if its frequency is equal or bigger than half of the total elements
@@ -115,7 +113,7 @@ init {
 		fi
 	}
 
-	printf("\n\n\n");
+	printf("\n\nFinal Result: ");
 	if 
 	::y == 999 -> printf("Unable to find results\n");
 	::else -> printf("%d\n", y);
