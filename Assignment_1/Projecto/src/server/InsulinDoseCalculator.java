@@ -3,6 +3,8 @@ package server;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.xml.ws.Endpoint;
+import java.math.BigDecimal;
+import java.math.MathContext;
 
 @WebService
 public class InsulinDoseCalculator {
@@ -40,17 +42,28 @@ public class InsulinDoseCalculator {
 	 */
 	@WebMethod
 	public int mealtimeInsulinDose(int carbohydrateAmount, int carbohydrateToInsulinRatio, int preMealBloodSugar, int targetBloodSugar, int personalSensitivity) {
-		double carbohydrate_dose, high_blood_sugar_dose;
+		BigDecimal carbohydrate_dose, high_blood_sugar_dose, carboAmount, carboRation, preSugar, targetSugar, personalSen, result;
 
-		if (carbohydrateAmount < 0 || carbohydrateToInsulinRatio < 0 || preMealBloodSugar < 0 || targetBloodSugar < 0 || personalSensitivity < 0)
-			return -1;
+		if (carbohydrateAmount < 60 || carbohydrateAmount > 150 || carbohydrateToInsulinRatio < 10
+				|| carbohydrateToInsulinRatio > 15 || preMealBloodSugar < 120 || preMealBloodSugar > 250
+				||targetBloodSugar < 80 || targetBloodSugar > 120  || personalSensitivity < 15
+				|| personalSensitivity > 100)
+			return 0;
 		else if (targetBloodSugar > preMealBloodSugar)
 			return 0;
 		else {
-			carbohydrate_dose = carbohydrateAmount / carbohydrateToInsulinRatio / personalSensitivity * 50;
-			high_blood_sugar_dose = (preMealBloodSugar - targetBloodSugar) / personalSensitivity;
+			carboAmount = new BigDecimal(50*carbohydrateAmount);
+			carboRation = new BigDecimal(carbohydrateToInsulinRatio);
+			preSugar = new BigDecimal(preMealBloodSugar);
+			targetSugar = new BigDecimal(targetBloodSugar);
+			personalSen = new BigDecimal(personalSensitivity);
 
-			return (int) Math.round(carbohydrate_dose + high_blood_sugar_dose);
+			carbohydrate_dose = carboAmount.divide(carboRation, MathContext.DECIMAL128);
+			high_blood_sugar_dose = preSugar.subtract(targetSugar);
+
+			result = carbohydrate_dose.add(high_blood_sugar_dose).divide(personalSen, MathContext.DECIMAL128);
+
+			return (int) Math.round(result.doubleValue());
 		}
 	}
 
@@ -67,9 +80,16 @@ public class InsulinDoseCalculator {
 	 */
 	@WebMethod
 	public int backgroundInsulinDose(int bodyWeight){
-		if (bodyWeight < 0)
-			return -1;
-		return (int) Math.round(0.55 * bodyWeight);
+		BigDecimal body, temp, result;
+
+		if (bodyWeight < 60 || bodyWeight > 120)
+			return 0;
+
+		body = new BigDecimal(bodyWeight);
+		temp = new BigDecimal(0.5*0.55);
+		result = body.multiply(temp);
+
+		return (int) Math.round(result.doubleValue());
 	}
 	
 	/**
@@ -98,35 +118,43 @@ public class InsulinDoseCalculator {
 	 */
 	@WebMethod
 	public int personalSensitivityToInsulin(int physicalActivityLevel, int[] physicalActivitySamples, int[] bloodSugarDropSamples){
-		int i, sx=0, sy=0, sxx=0, sxy=0, syy=0, n;
-		double alpha, beta;
+		int i;
+		BigDecimal sx, sy, sxx, sxy, n, alpha, beta, phActLevel, result;
 
-		if (physicalActivityLevel < 0 || physicalActivityLevel > 10 || physicalActivitySamples.length != bloodSugarDropSamples.length || physicalActivitySamples.length == 0)
-			return -1;
+		sx = BigDecimal.ZERO;
+		sy = BigDecimal.ZERO;
+		sxx = BigDecimal.ZERO;
+		sxy = BigDecimal.ZERO;
+		phActLevel = new BigDecimal(physicalActivityLevel);
+		n = new BigDecimal(physicalActivitySamples.length);
 
-		n = physicalActivitySamples.length;
-		for(i=0; i<n; i++) {
-			if(physicalActivitySamples[i] < 0 || physicalActivitySamples[i] > 10 || bloodSugarDropSamples[i] < 0)
-				return -1;
+		if (physicalActivityLevel < 0 || physicalActivityLevel > 10 || physicalActivitySamples.length != bloodSugarDropSamples.length
+				|| physicalActivitySamples.length == 0 || physicalActivitySamples.length > 10)
+			return 0;
 
-			sx += physicalActivitySamples[i];
-			sy += bloodSugarDropSamples[i];
-			sxx += physicalActivitySamples[i]*physicalActivitySamples[i];
-			syy += bloodSugarDropSamples[i]*bloodSugarDropSamples[i];
-			sxy += physicalActivitySamples[i]*bloodSugarDropSamples[i];
+		for(i=0; i<physicalActivitySamples.length; i++) {
+			if(physicalActivitySamples[i] < 0 || physicalActivitySamples[i] > 10 || bloodSugarDropSamples[i] < 15 || bloodSugarDropSamples[i] > 100)
+				return 0;
+
+			sx = sx.add(new BigDecimal(physicalActivitySamples[i]));
+			sy = sy.add(new BigDecimal(bloodSugarDropSamples[i]));
+			sxx = sxx.add(new BigDecimal(physicalActivitySamples[i]*physicalActivitySamples[i]));
+			sxy = sxy.add(new BigDecimal(physicalActivitySamples[i]*bloodSugarDropSamples[i]));
+			//syy = syy.add(new BigDecimal(bloodSugarDropSamples[i]*bloodSugarDropSamples[i]));
 		}
 
-		beta = (n*sxy - sx*sy) / (n*sxx - sx*sx);
-		alpha = sy/n - beta*sx/n;
+		beta = (n.multiply(sxy).subtract(sx.multiply(sy))).divide(n.multiply(sxx).subtract(sx.multiply(sx)), MathContext.DECIMAL128);
+		alpha = (sy.subtract(beta.multiply(sx))).divide(n, MathContext.DECIMAL128);
+		result = alpha.add(beta.multiply(phActLevel));
 
-		return (int) Math.round(alpha + beta * physicalActivityLevel);
+		return (int) Math.round(result.doubleValue());
 	}
 
 
 
 	public static void main(String[] args) {
 		InsulinDoseCalculator insulin = new InsulinDoseCalculator();
-		Endpoint endpoint = Endpoint.publish("http://localhost:8081/insulin", insulin);
+		Endpoint endpoint = Endpoint.publish("http://localhost:8080/insulin", insulin);
 	}
 }
 
