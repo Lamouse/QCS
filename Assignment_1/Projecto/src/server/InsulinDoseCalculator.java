@@ -128,7 +128,8 @@ public class InsulinDoseCalculator {
 		phActLevel = new BigDecimal(physicalActivityLevel);
 		n = new BigDecimal(physicalActivitySamples.length);
 
-		if (physicalActivityLevel < 0 || physicalActivityLevel > 10 || physicalActivitySamples.length != bloodSugarDropSamples.length || physicalActivitySamples.length == 0)
+		if (physicalActivityLevel < 0 || physicalActivityLevel > 10 || physicalActivitySamples.length != bloodSugarDropSamples.length
+				|| physicalActivitySamples.length == 0 || physicalActivitySamples.length > 10)
 			return 0;
 
 		for(i=0; i<physicalActivitySamples.length; i++) {
