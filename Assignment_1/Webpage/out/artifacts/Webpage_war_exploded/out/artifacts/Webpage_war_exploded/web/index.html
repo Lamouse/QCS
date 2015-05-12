@@ -1,11 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: paulo
-  Date: 11-05-2015
-  Time: 14:26
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="pt" ng-app="assignement1">
 <head>
     <meta charset="UTF-8">
@@ -43,7 +35,7 @@
         </ul>
 
         <div ng-show="tab.isSet(1)">
-            <form name="form1" class="form-horizontal">
+            <form name="form1" class="form-horizontal" action="mealtimeInsulinDose.jsp" method="get">
                 <div class="form-group" style="margin-top:30px;">
                     <label for="input1_1" class="col-sm-6 control-label">Total grams of carbohydrates in the meal</label>
                     <div class="col-sm-4">
@@ -82,7 +74,7 @@
             </form>
         </div>
         <div ng-show="tab.isSet(2)">
-            <form name="form2" class="form-horizontal">
+            <form name="form2" class="form-horizontal" action="personalSensitivityToInsulin.jsp" method="get">
                 <div class="form-group" style="margin-top:30px;">
                     <label for="input2_1" class="col-sm-6 control-label">Total grams of carbohydrates in the meal</label>
                     <div class="col-sm-4">
@@ -150,11 +142,11 @@
             </form>
         </div>
         <div ng-show="tab.isSet(3)">
-            <form name="form3" class="form-horizontal">
+            <form name="form3" class="form-horizontal" action="backgroundInsulinDose.jsp" method="get">
                 <div class="form-group" style="margin-top:30px;">
                     <label for="input3_1" class="col-sm-2 control-label">Weight</label>
                     <div class="col-sm-10">
-                        <input type="number" class="form-control" id="input3_1" ng-model="f3_1" required>
+                        <input type="number" class="form-control" id="input3_1" name="input3_1" ng-model="f3_1" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -167,7 +159,14 @@
     </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <script>
+
+        $("form3").validate();
+
+    </script>
+
 </body>
 </html>
-

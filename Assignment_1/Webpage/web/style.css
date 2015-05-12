@@ -1,0 +1,10 @@
+input.ng-invalid {
+  border: 1px solid red;
+}
+input.ng-valid {
+  border: 1px solid green;
+}
+
+p {
+    padding-top: 6px;
+}
