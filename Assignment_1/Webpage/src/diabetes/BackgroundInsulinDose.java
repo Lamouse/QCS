@@ -27,8 +27,24 @@ public class BackgroundInsulinDose {
         this.input3_1 = input3_1;
     }
 
-    public int getResult(){
-        int result = 0;
+    public int getResult() {
+        int result = 0, i, temp;
+
+        for(i = 0; i < 3; i++) {
+            execution();
+
+            temp = Voter.voter(this.results, this.n);
+
+            if (temp != -990) {
+                result = temp;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    private void execution() {
         int i;
 
         for(i = 0; i < n; i++) {
@@ -45,10 +61,7 @@ public class BackgroundInsulinDose {
                 e.printStackTrace();
             }
             this.results[i] = this.ws_threads[i].getResult();
-            System.out.println(this.results[i]);
         }
-
-        return result;
     }
 
     public class Webservice extends Thread{
@@ -57,7 +70,7 @@ public class BackgroundInsulinDose {
 
         public Webservice(int wb){
             this.wb = wb;
-            this.result = -1;
+            this.result = -999;
         }
 
         public int getResult(){
