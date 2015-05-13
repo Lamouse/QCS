@@ -480,46 +480,48 @@ int _;	/* predefined write-only variable */
 #endif
 
 short src_ln1 [] = {
-	  0,  32,  32,  33,  32,  34,  34,  34, 
-	 35,  34,  31,  37,  42,  42,  43,  45, 
-	 45,  47,  47,  48,  48,  46,  50,  45, 
-	 50,  50,  50,  51,  50,  44,  53,  56, 
-	 56,  57,  57,  55,  59,  42,  59,  59, 
-	 59,  63,  59,  63,  64,  64,  66,  67, 
-	 67,  69,  69,  70,  70,  68,  72,  67, 
-	 72,  72,  72,  74,  72,  75,  75,  76, 
-	 76,  77,  77,  79,  79,  80,  80,  81, 
-	 81,  82,  82,  78,  84,  77,  84,  84, 
-	 84,  85,  84,  85,  86,  87,  74,  89, 
-	 64,  89,  89,  89,  91,  89,  91,  93, 
-	 93,  94,  93,  95,  95,  95, 103,  95, 
-	104, 104, 105, 105, 103, 108, 108, 109, 
-	109, 111, 111, 111, 112, 112, 110, 114, 
-	109, 114, 114, 114, 116, 114, 116, 118, 
-	118, 119, 119, 117, 121, 121,   0, };
+	  0,  94,  94,  95,  94,  96,  96,  96, 
+	 97,  96,  93,  99, 104, 104, 105,  28, 
+	 29,  29,  31,  32,  32,  34,  34,  35, 
+	 35,  33,  37,  32,  37,  37,  37,  39, 
+	 37,  40,  40,  41,  41,  42,  42,  44, 
+	 44,  45,  45,  46,  46,  47,  47,  43, 
+	 49,  42,  49,  49,  49,  50,  49,  50, 
+	 51,  52,  39,  54,  29,  54,  54,  54, 
+	 56,  54,  56,  58,  58,  59,  58,  60, 
+	 60,  60,  61,  60,  61,  70,  70,  71, 
+	 71,  69,  74,  74,  75,  75,  77,  77, 
+	 77,  78,  78,  76,  80,  75,  80,  80, 
+	 80,  87,  80,  26, 109, 109, 109, 110, 
+	110, 108, 113, 114, 114, 118, 118, 119, 
+	119, 115, 121, 114, 121, 121, 121, 122, 
+	121, 113, 124, 104, 125, 125, 125, 127, 
+	125, 128, 128, 129, 129, 127, 131, 131, 
+	  0, };
 S_F_MAP src_file1 [] = {
 	{ "-", 0, 0 },
-	{ "voter.pml", 1, 133 },
-	{ "-", 134, 135 }
+	{ "voter.pml", 1, 135 },
+	{ "-", 136, 137 }
 };
 uchar reached1 [] = {
 	  0,   1,   1,   0,   0,   1,   1,   0, 
 	  1,   1,   0,   0,   0,   1,   0,   1, 
-	  1,   1,   0,   1,   0,   0,   1,   0, 
-	  1,   1,   0,   1,   1,   0,   0,   1, 
-	  1,   1,   0,   0,   1,   0,   1,   0, 
-	  0,   1,   1,   0,   0,   1,   0,   0, 
-	  1,   1,   0,   1,   0,   0,   1,   0, 
-	  1,   1,   0,   1,   1,   1,   0,   1, 
-	  0,   0,   1,   1,   0,   1,   0,   1, 
-	  0,   1,   0,   0,   1,   0,   1,   1, 
-	  0,   1,   1,   0,   0,   0,   0,   1, 
-	  0,   1,   0,   0,   1,   1,   0,   0, 
-	  1,   0,   0,   1,   1,   0,   1,   1, 
-	  1,   0,   1,   0,   0,   1,   0,   0, 
-	  1,   1,   0,   0,   1,   0,   0,   1, 
 	  0,   1,   0,   0,   1,   1,   0,   1, 
-	  0,   1,   0,   0,   1,   0,   0, };
+	  0,   0,   1,   0,   1,   1,   0,   1, 
+	  1,   1,   0,   1,   0,   0,   1,   1, 
+	  0,   1,   0,   1,   0,   1,   0,   0, 
+	  1,   0,   1,   1,   0,   1,   1,   0, 
+	  0,   0,   0,   1,   0,   1,   0,   0, 
+	  1,   1,   0,   0,   1,   0,   0,   1, 
+	  0,   0,   1,   1,   0,   1,   0,   1, 
+	  0,   0,   1,   0,   0,   1,   1,   0, 
+	  0,   1,   0,   0,   1,   0,   1,   1, 
+	  0,   1,   1,   0,   1,   0,   1,   1, 
+	  0,   0,   1,   1,   1,   1,   0,   1, 
+	  0,   0,   1,   0,   1,   1,   0,   1, 
+	  1,   0,   0,   0,   1,   1,   0,   1, 
+	  1,   1,   0,   1,   1,   0,   1,   0, 
+	  0, };
 uchar *loopstate1;
 
 short src_ln0 [] = {
@@ -849,37 +851,17 @@ addproc(int calling_pid, int priority, int n, int par0)
 		/* locals: */
 		((P1 *)pptr(h))->i = 0;
 		((P1 *)pptr(h))->y = 0;
-		((P1 *)pptr(h))->cont = 0;
+		((P1 *)pptr(h))->j = 0;
+		((P1 *)pptr(h))->count = 0;
 		((P1 *)pptr(h))->index = 0;
-	{	int l_in;
-		for (l_in = 0; l_in < 3; l_in++)
-		{
-			((P1 *)pptr(h))->value[l_in] = 0;
-		}
-	}
-	{	int l_in;
-		for (l_in = 0; l_in < 3; l_in++)
-		{
-			((P1 *)pptr(h))->freq[l_in] = 0;
-		}
-	}
+		((P1 *)pptr(h))->rep = 0;
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)pptr(h))->i);
 		logval(":init::y", ((P1 *)pptr(h))->y);
-		logval(":init::cont", ((P1 *)pptr(h))->cont);
+		logval(":init::j", ((P1 *)pptr(h))->j);
+		logval(":init::count", ((P1 *)pptr(h))->count);
 		logval(":init::index", ((P1 *)pptr(h))->index);
-	{	int l_in;
-		for (l_in = 0; l_in < 3; l_in++)
-		{
-			logval(":init::value[l_in]", ((P1 *)pptr(h))->value[l_in]);
-		}
-	}
-	{	int l_in;
-		for (l_in = 0; l_in < 3; l_in++)
-		{
-			logval(":init::freq[l_in]", ((P1 *)pptr(h))->freq[l_in]);
-		}
-	}
+		logval(":init::rep", ((P1 *)pptr(h))->rep);
 #endif
 #ifdef HAS_CODE
 		locinit1(h);
@@ -12020,11 +12002,35 @@ iniglobals(int calling_pid)
 			now.results[l_in] = 0;
 		}
 	}
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			now.value[l_in] = 0;
+		}
+	}
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			now.freq[l_in] = 0;
+		}
+	}
 #ifdef VAR_RANGES
 	{	int l_in;
 		for (l_in = 0; l_in < 3; l_in++)
 		{
 			logval("results[l_in]", now.results[l_in]);
+		}
+	}
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			logval("value[l_in]", now.value[l_in]);
+		}
+	}
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			logval("freq[l_in]", now.freq[l_in]);
 		}
 	}
 #endif
@@ -13722,7 +13728,19 @@ c_globals(void)
 	{	int l_in;
 		for (l_in = 0; l_in < 3; l_in++)
 		{
-			printf("	short  results[%d]:	%d\n", l_in, now.results[l_in]);
+			printf("	int    results[%d]:	%d\n", l_in, now.results[l_in]);
+		}
+	}
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			printf("	int    value[%d]:	%d\n", l_in, now.value[l_in]);
+		}
+	}
+	{	int l_in;
+		for (l_in = 0; l_in < 3; l_in++)
+		{
+			printf("	int    freq[%d]:	%d\n", l_in, now.freq[l_in]);
 		}
 	}
 }
@@ -13734,20 +13752,10 @@ c_locals(int pid, int tp)
 		printf("local vars proc %d (:init:):\n", pid);
 	printf("	int    i:	%d\n", ((P1 *)pptr(pid))->i);
 	printf("	int    y:	%d\n", ((P1 *)pptr(pid))->y);
-	printf("	int    cont:	%d\n", ((P1 *)pptr(pid))->cont);
+	printf("	int    j:	%d\n", ((P1 *)pptr(pid))->j);
+	printf("	int    count:	%d\n", ((P1 *)pptr(pid))->count);
 	printf("	int    index:	%d\n", ((P1 *)pptr(pid))->index);
-	{	int l_in;
-		for (l_in = 0; l_in < 3; l_in++)
-		{
-			printf("	int    value[%d]:	%d\n", l_in, ((P1 *)pptr(pid))->value[l_in]);
-		}
-	}
-	{	int l_in;
-		for (l_in = 0; l_in < 3; l_in++)
-		{
-			printf("	int    freq[%d]:	%d\n", l_in, ((P1 *)pptr(pid))->freq[l_in]);
-		}
-	}
+	printf("	int    rep:	%d\n", ((P1 *)pptr(pid))->rep);
 		break;
 	case 0:
 		printf("local vars proc %d (P):\n", pid);
@@ -13768,7 +13776,7 @@ c_chandump(int unused)
 {	unused++; /* avoid complaints */
 }
 
-Trans *t_id_lkup[146];
+Trans *t_id_lkup[148];
 
 
 #ifdef BFS_PAR

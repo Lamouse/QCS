@@ -20,7 +20,7 @@
 		_m = 3; goto P999;
 
 		 /* PROC :init: */
-	case 3: // STATE 1 - voter.pml:32 - [i = 0] (0:0:1 - 1)
+	case 3: // STATE 1 - voter.pml:94 - [i = 0] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][1] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->i;
@@ -30,19 +30,19 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 4: // STATE 2 - voter.pml:32 - [((i<=(3-1)))] (0:0:0 - 1)
+	case 4: // STATE 2 - voter.pml:94 - [((i<=(3-1)))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[1][2] = 1;
 		if (!((((P1 *)this)->i<=(3-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 5: // STATE 3 - voter.pml:33 - [(run P(-(1)))] (0:0:0 - 1)
+	case 5: // STATE 3 - voter.pml:95 - [(run P(-(1)))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[1][3] = 1;
 		if (!(addproc(II, 1, 0,  -(1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 6: // STATE 4 - voter.pml:32 - [i = (i+1)] (0:0:1 - 1)
+	case 6: // STATE 4 - voter.pml:94 - [i = (i+1)] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][4] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->i;
@@ -52,13 +52,13 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 7: // STATE 11 - voter.pml:37 - [((_nr_pr==1))] (0:0:0 - 1)
+	case 7: // STATE 11 - voter.pml:99 - [((_nr_pr==1))] (0:0:0 - 1)
 		IfNotBlocked
 		reached[1][11] = 1;
 		if (!((((int)now._nr_pr)==1)))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 8: // STATE 12 - voter.pml:42 - [y = 0] (0:0:1 - 1)
+	case 8: // STATE 12 - voter.pml:104 - [y = 0] (0:0:1 - 1)
 		IfNotBlocked
 		reached[1][12] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->y;
@@ -68,163 +68,23 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 9: // STATE 13 - voter.pml:42 - [((y<=1))] (29:0:1 - 1)
+	case 9: // STATE 13 - voter.pml:104 - [((y<=1))] (99:0:1 - 1)
 		IfNotBlocked
 		reached[1][13] = 1;
 		if (!((((P1 *)this)->y<=1)))
 			continue;
-		/* merge: cont = 0(0, 14, 29) */
+		/* merge: rep = 0(0, 14, 99) */
 		reached[1][14] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->cont;
-		((P1 *)this)->cont = 0;
+		(trpt+1)->bup.oval = ((P1 *)this)->rep;
+		((P1 *)this)->rep = 0;
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::rep", ((P1 *)this)->rep);
 #endif
 		;
 		_m = 3; goto P999; /* 1 */
-	case 10: // STATE 15 - voter.pml:45 - [i = 0] (0:0:1 - 1)
+	case 10: // STATE 15 - voter.pml:28 - [index = 0] (0:63:2 - 1)
 		IfNotBlocked
 		reached[1][15] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->i;
-		((P1 *)this)->i = 0;
-#ifdef VAR_RANGES
-		logval(":init::i", ((P1 *)this)->i);
-#endif
-		;
-		_m = 3; goto P999; /* 0 */
-	case 11: // STATE 16 - voter.pml:45 - [((i<=(3-1)))] (0:0:0 - 1)
-		IfNotBlocked
-		reached[1][16] = 1;
-		if (!((((P1 *)this)->i<=(3-1))))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 12: // STATE 17 - voter.pml:47 - [((results[i]==0))] (0:0:0 - 1)
-		IfNotBlocked
-		reached[1][17] = 1;
-		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==0)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 13: // STATE 18 - voter.pml:47 - [(run P(i))] (0:0:0 - 1)
-		IfNotBlocked
-		reached[1][18] = 1;
-		if (!(addproc(II, 1, 0, ((P1 *)this)->i)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 14: // STATE 20 - voter.pml:48 - [cont = (cont+1)] (0:26:2 - 1)
-		IfNotBlocked
-		reached[1][20] = 1;
-		(trpt+1)->bup.ovals = grab_ints(2);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = (((P1 *)this)->cont+1);
-#ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
-#endif
-		;
-		/* merge: .(goto)(26, 22, 26) */
-		reached[1][22] = 1;
-		;
-		/* merge: i = (i+1)(26, 23, 26) */
-		reached[1][23] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->i;
-		((P1 *)this)->i = (((P1 *)this)->i+1);
-#ifdef VAR_RANGES
-		logval(":init::i", ((P1 *)this)->i);
-#endif
-		;
-		/* merge: .(goto)(0, 27, 26) */
-		reached[1][27] = 1;
-		;
-		_m = 3; goto P999; /* 3 */
-	case 15: // STATE 23 - voter.pml:45 - [i = (i+1)] (0:26:1 - 3)
-		IfNotBlocked
-		reached[1][23] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->i;
-		((P1 *)this)->i = (((P1 *)this)->i+1);
-#ifdef VAR_RANGES
-		logval(":init::i", ((P1 *)this)->i);
-#endif
-		;
-		/* merge: .(goto)(0, 27, 26) */
-		reached[1][27] = 1;
-		;
-		_m = 3; goto P999; /* 1 */
-	case 16: // STATE 30 - voter.pml:53 - [((_nr_pr==1))] (0:0:0 - 1)
-		IfNotBlocked
-		reached[1][30] = 1;
-		if (!((((int)now._nr_pr)==1)))
-			continue;
-		_m = 3; goto P999; /* 0 */
-	case 17: // STATE 31 - voter.pml:56 - [((cont==3))] (91:0:3 - 1)
-		IfNotBlocked
-		reached[1][31] = 1;
-		if (!((((P1 *)this)->cont==3)))
-			continue;
-		if (TstOnly) return 1; /* TT */
-		/* dead 1: cont */  (trpt+1)->bup.ovals = grab_ints(3);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-#ifdef HAS_CODE
-		if (!readtrail)
-#endif
-			((P1 *)this)->cont = 0;
-		/* merge: goto :b1(91, 32, 91) */
-		reached[1][32] = 1;
-		;
-		/* merge: index = 0(91, 43, 91) */
-		reached[1][43] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->index;
-		((P1 *)this)->index = 0;
-#ifdef VAR_RANGES
-		logval(":init::index", ((P1 *)this)->index);
-#endif
-		;
-		/* merge: i = 0(91, 44, 91) */
-		reached[1][44] = 1;
-		(trpt+1)->bup.ovals[2] = ((P1 *)this)->i;
-		((P1 *)this)->i = 0;
-#ifdef VAR_RANGES
-		logval(":init::i", ((P1 *)this)->i);
-#endif
-		;
-		/* merge: .(goto)(0, 92, 91) */
-		reached[1][92] = 1;
-		;
-		_m = 3; goto P999; /* 4 */
-	case 18: // STATE 34 - voter.pml:57 - [(1)] (40:0:1 - 1)
-		IfNotBlocked
-		reached[1][34] = 1;
-		if (!(1))
-			continue;
-		/* merge: .(goto)(40, 36, 40) */
-		reached[1][36] = 1;
-		;
-		/* merge: y = (y+1)(40, 37, 40) */
-		reached[1][37] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
-#ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
-#endif
-		;
-		/* merge: .(goto)(0, 41, 40) */
-		reached[1][41] = 1;
-		;
-		_m = 3; goto P999; /* 3 */
-	case 19: // STATE 37 - voter.pml:42 - [y = (y+1)] (0:40:1 - 2)
-		IfNotBlocked
-		reached[1][37] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
-#ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
-#endif
-		;
-		/* merge: .(goto)(0, 41, 40) */
-		reached[1][41] = 1;
-		;
-		_m = 3; goto P999; /* 1 */
-	case 20: // STATE 43 - voter.pml:63 - [index = 0] (0:91:2 - 5)
-		IfNotBlocked
-		reached[1][43] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
 		(trpt+1)->bup.ovals[0] = ((P1 *)this)->index;
 		((P1 *)this)->index = 0;
@@ -232,386 +92,388 @@
 		logval(":init::index", ((P1 *)this)->index);
 #endif
 		;
-		/* merge: i = 0(91, 44, 91) */
-		reached[1][44] = 1;
+		/* merge: i = 0(63, 16, 63) */
+		reached[1][16] = 1;
 		(trpt+1)->bup.ovals[1] = ((P1 *)this)->i;
 		((P1 *)this)->i = 0;
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)this)->i);
 #endif
 		;
-		/* merge: .(goto)(0, 92, 91) */
-		reached[1][92] = 1;
+		/* merge: .(goto)(0, 64, 63) */
+		reached[1][64] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 21: // STATE 45 - voter.pml:64 - [((i<=(3-1)))] (58:0:2 - 1)
+	case 11: // STATE 17 - voter.pml:29 - [((i<=(3-1)))] (30:0:2 - 1)
 		IfNotBlocked
-		reached[1][45] = 1;
+		reached[1][17] = 1;
 		if (!((((P1 *)this)->i<=(3-1))))
 			continue;
-		/* merge: cont = 0(58, 46, 58) */
-		reached[1][46] = 1;
+		/* merge: count = 0(30, 18, 30) */
+		reached[1][18] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = 0;
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
+		((P1 *)this)->count = 0;
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::count", ((P1 *)this)->count);
 #endif
 		;
-		/* merge: y = 0(58, 47, 58) */
-		reached[1][47] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
-		((P1 *)this)->y = 0;
+		/* merge: j = 0(30, 19, 30) */
+		reached[1][19] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
+		((P1 *)this)->j = 0;
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 59, 58) */
-		reached[1][59] = 1;
+		/* merge: .(goto)(0, 31, 30) */
+		reached[1][31] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 22: // STATE 48 - voter.pml:67 - [((y<=(index-1)))] (0:0:0 - 1)
+	case 12: // STATE 20 - voter.pml:32 - [((j<=(index-1)))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][48] = 1;
-		if (!((((P1 *)this)->y<=(((P1 *)this)->index-1))))
+		reached[1][20] = 1;
+		if (!((((P1 *)this)->j<=(((P1 *)this)->index-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 23: // STATE 49 - voter.pml:69 - [((results[i]==value[y]))] (0:0:0 - 1)
+	case 13: // STATE 21 - voter.pml:34 - [((results[i]==value[j]))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][49] = 1;
-		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==((P1 *)this)->value[ Index(((P1 *)this)->y, 3) ])))
+		reached[1][21] = 1;
+		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==now.value[ Index(((P1 *)this)->j, 3) ])))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 24: // STATE 50 - voter.pml:69 - [cont = 1] (0:58:2 - 1)
+	case 14: // STATE 22 - voter.pml:34 - [count = 1] (0:30:2 - 1)
 		IfNotBlocked
-		reached[1][50] = 1;
+		reached[1][22] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = 1;
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
+		((P1 *)this)->count = 1;
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::count", ((P1 *)this)->count);
 #endif
 		;
-		/* merge: .(goto)(58, 54, 58) */
-		reached[1][54] = 1;
+		/* merge: .(goto)(30, 26, 30) */
+		reached[1][26] = 1;
 		;
-		/* merge: y = (y+1)(58, 55, 58) */
-		reached[1][55] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
+		/* merge: j = (j+1)(30, 27, 30) */
+		reached[1][27] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
+		((P1 *)this)->j = (((P1 *)this)->j+1);
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 59, 58) */
-		reached[1][59] = 1;
+		/* merge: .(goto)(0, 31, 30) */
+		reached[1][31] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 25: // STATE 52 - voter.pml:70 - [(1)] (58:0:1 - 1)
+	case 15: // STATE 24 - voter.pml:35 - [(1)] (30:0:1 - 1)
 		IfNotBlocked
-		reached[1][52] = 1;
+		reached[1][24] = 1;
 		if (!(1))
 			continue;
-		/* merge: .(goto)(58, 54, 58) */
-		reached[1][54] = 1;
+		/* merge: .(goto)(30, 26, 30) */
+		reached[1][26] = 1;
 		;
-		/* merge: y = (y+1)(58, 55, 58) */
-		reached[1][55] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
+		/* merge: j = (j+1)(30, 27, 30) */
+		reached[1][27] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->j;
+		((P1 *)this)->j = (((P1 *)this)->j+1);
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 59, 58) */
-		reached[1][59] = 1;
+		/* merge: .(goto)(0, 31, 30) */
+		reached[1][31] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 26: // STATE 55 - voter.pml:67 - [y = (y+1)] (0:58:1 - 3)
+	case 16: // STATE 27 - voter.pml:32 - [j = (j+1)] (0:30:1 - 3)
 		IfNotBlocked
-		reached[1][55] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
+		reached[1][27] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->j;
+		((P1 *)this)->j = (((P1 *)this)->j+1);
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 59, 58) */
-		reached[1][59] = 1;
+		/* merge: .(goto)(0, 31, 30) */
+		reached[1][31] = 1;
 		;
 		_m = 3; goto P999; /* 1 */
-	case 27: // STATE 61 - voter.pml:75 - [((cont==1))] (0:0:1 - 1)
+	case 17: // STATE 33 - voter.pml:40 - [((count==1))] (0:0:1 - 1)
 		IfNotBlocked
-		reached[1][61] = 1;
-		if (!((((P1 *)this)->cont==1)))
+		reached[1][33] = 1;
+		if (!((((P1 *)this)->count==1)))
 			continue;
 		if (TstOnly) return 1; /* TT */
-		/* dead 1: cont */  (trpt+1)->bup.oval = ((P1 *)this)->cont;
+		/* dead 1: count */  (trpt+1)->bup.oval = ((P1 *)this)->count;
 #ifdef HAS_CODE
 		if (!readtrail)
 #endif
-			((P1 *)this)->cont = 0;
+			((P1 *)this)->count = 0;
 		_m = 3; goto P999; /* 0 */
-	case 28: // STATE 62 - voter.pml:75 - [(1)] (91:0:1 - 1)
+	case 18: // STATE 34 - voter.pml:40 - [(1)] (63:0:1 - 1)
 		IfNotBlocked
-		reached[1][62] = 1;
+		reached[1][34] = 1;
 		if (!(1))
 			continue;
-		/* merge: .(goto)(91, 87, 91) */
-		reached[1][87] = 1;
+		/* merge: .(goto)(63, 59, 63) */
+		reached[1][59] = 1;
 		;
-		/* merge: i = (i+1)(91, 88, 91) */
-		reached[1][88] = 1;
+		/* merge: i = (i+1)(63, 60, 63) */
+		reached[1][60] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->i;
 		((P1 *)this)->i = (((P1 *)this)->i+1);
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)this)->i);
 #endif
 		;
-		/* merge: .(goto)(0, 92, 91) */
-		reached[1][92] = 1;
+		/* merge: .(goto)(0, 64, 63) */
+		reached[1][64] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 29: // STATE 64 - voter.pml:76 - [cont = 0] (0:80:2 - 1)
+	case 19: // STATE 36 - voter.pml:41 - [count = 0] (0:52:2 - 1)
 		IfNotBlocked
-		reached[1][64] = 1;
+		reached[1][36] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = 0;
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
+		((P1 *)this)->count = 0;
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::count", ((P1 *)this)->count);
 #endif
 		;
-		/* merge: y = 0(80, 65, 80) */
-		reached[1][65] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
-		((P1 *)this)->y = 0;
+		/* merge: j = 0(52, 37, 52) */
+		reached[1][37] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
+		((P1 *)this)->j = 0;
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 81, 80) */
-		reached[1][81] = 1;
+		/* merge: .(goto)(0, 53, 52) */
+		reached[1][53] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 30: // STATE 66 - voter.pml:77 - [((y<=(3-1)))] (0:0:0 - 1)
+	case 20: // STATE 38 - voter.pml:42 - [((j<=(3-1)))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][66] = 1;
-		if (!((((P1 *)this)->y<=(3-1))))
+		reached[1][38] = 1;
+		if (!((((P1 *)this)->j<=(3-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 31: // STATE 67 - voter.pml:79 - [((results[i]==results[y]))] (0:0:0 - 1)
+	case 21: // STATE 39 - voter.pml:44 - [((results[i]==results[j]))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][67] = 1;
-		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==now.results[ Index(((P1 *)this)->y, 3) ])))
+		reached[1][39] = 1;
+		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==now.results[ Index(((P1 *)this)->j, 3) ])))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 32: // STATE 68 - voter.pml:79 - [cont = (cont+1)] (0:80:2 - 1)
+	case 22: // STATE 40 - voter.pml:44 - [count = (count+1)] (0:52:2 - 1)
 		IfNotBlocked
-		reached[1][68] = 1;
+		reached[1][40] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = (((P1 *)this)->cont+1);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
+		((P1 *)this)->count = (((P1 *)this)->count+1);
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::count", ((P1 *)this)->count);
 #endif
 		;
-		/* merge: .(goto)(80, 76, 80) */
-		reached[1][76] = 1;
+		/* merge: .(goto)(52, 48, 52) */
+		reached[1][48] = 1;
 		;
-		/* merge: y = (y+1)(80, 77, 80) */
-		reached[1][77] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
+		/* merge: j = (j+1)(52, 49, 52) */
+		reached[1][49] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
+		((P1 *)this)->j = (((P1 *)this)->j+1);
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 81, 80) */
-		reached[1][81] = 1;
+		/* merge: .(goto)(0, 53, 52) */
+		reached[1][53] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 33: // STATE 69 - voter.pml:80 - [((results[i]==(results[y]-1)))] (0:0:0 - 1)
+	case 23: // STATE 41 - voter.pml:45 - [((results[i]==(results[j]-1)))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][69] = 1;
-		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==(now.results[ Index(((P1 *)this)->y, 3) ]-1))))
+		reached[1][41] = 1;
+		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==(now.results[ Index(((P1 *)this)->j, 3) ]-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 34: // STATE 70 - voter.pml:80 - [cont = (cont+1)] (0:80:2 - 1)
+	case 24: // STATE 42 - voter.pml:45 - [count = (count+1)] (0:52:2 - 1)
 		IfNotBlocked
-		reached[1][70] = 1;
+		reached[1][42] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = (((P1 *)this)->cont+1);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
+		((P1 *)this)->count = (((P1 *)this)->count+1);
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::count", ((P1 *)this)->count);
 #endif
 		;
-		/* merge: .(goto)(80, 76, 80) */
-		reached[1][76] = 1;
+		/* merge: .(goto)(52, 48, 52) */
+		reached[1][48] = 1;
 		;
-		/* merge: y = (y+1)(80, 77, 80) */
-		reached[1][77] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
+		/* merge: j = (j+1)(52, 49, 52) */
+		reached[1][49] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
+		((P1 *)this)->j = (((P1 *)this)->j+1);
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 81, 80) */
-		reached[1][81] = 1;
+		/* merge: .(goto)(0, 53, 52) */
+		reached[1][53] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 35: // STATE 71 - voter.pml:81 - [((results[i]==(results[y]+1)))] (0:0:0 - 1)
+	case 25: // STATE 43 - voter.pml:46 - [((results[i]==(results[j]+1)))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][71] = 1;
-		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==(now.results[ Index(((P1 *)this)->y, 3) ]+1))))
+		reached[1][43] = 1;
+		if (!((now.results[ Index(((P1 *)this)->i, 3) ]==(now.results[ Index(((P1 *)this)->j, 3) ]+1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 36: // STATE 72 - voter.pml:81 - [cont = (cont+1)] (0:80:2 - 1)
+	case 26: // STATE 44 - voter.pml:46 - [count = (count+1)] (0:52:2 - 1)
 		IfNotBlocked
-		reached[1][72] = 1;
+		reached[1][44] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = (((P1 *)this)->cont+1);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
+		((P1 *)this)->count = (((P1 *)this)->count+1);
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::count", ((P1 *)this)->count);
 #endif
 		;
-		/* merge: .(goto)(80, 76, 80) */
-		reached[1][76] = 1;
+		/* merge: .(goto)(52, 48, 52) */
+		reached[1][48] = 1;
 		;
-		/* merge: y = (y+1)(80, 77, 80) */
-		reached[1][77] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
+		/* merge: j = (j+1)(52, 49, 52) */
+		reached[1][49] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
+		((P1 *)this)->j = (((P1 *)this)->j+1);
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 81, 80) */
-		reached[1][81] = 1;
+		/* merge: .(goto)(0, 53, 52) */
+		reached[1][53] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 37: // STATE 74 - voter.pml:82 - [(1)] (80:0:1 - 1)
+	case 27: // STATE 46 - voter.pml:47 - [(1)] (52:0:1 - 1)
 		IfNotBlocked
-		reached[1][74] = 1;
+		reached[1][46] = 1;
 		if (!(1))
 			continue;
-		/* merge: .(goto)(80, 76, 80) */
-		reached[1][76] = 1;
+		/* merge: .(goto)(52, 48, 52) */
+		reached[1][48] = 1;
 		;
-		/* merge: y = (y+1)(80, 77, 80) */
-		reached[1][77] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
+		/* merge: j = (j+1)(52, 49, 52) */
+		reached[1][49] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->j;
+		((P1 *)this)->j = (((P1 *)this)->j+1);
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 81, 80) */
-		reached[1][81] = 1;
+		/* merge: .(goto)(0, 53, 52) */
+		reached[1][53] = 1;
 		;
 		_m = 3; goto P999; /* 3 */
-	case 38: // STATE 77 - voter.pml:77 - [y = (y+1)] (0:80:1 - 5)
+	case 28: // STATE 49 - voter.pml:42 - [j = (j+1)] (0:52:1 - 5)
 		IfNotBlocked
-		reached[1][77] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->y;
-		((P1 *)this)->y = (((P1 *)this)->y+1);
+		reached[1][49] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->j;
+		((P1 *)this)->j = (((P1 *)this)->j+1);
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: .(goto)(0, 81, 80) */
-		reached[1][81] = 1;
+		/* merge: .(goto)(0, 53, 52) */
+		reached[1][53] = 1;
 		;
 		_m = 3; goto P999; /* 1 */
-	case 39: // STATE 83 - voter.pml:85 - [value[index] = results[i]] (0:0:1 - 3)
+	case 29: // STATE 55 - voter.pml:50 - [value[index] = results[i]] (0:0:1 - 3)
 		IfNotBlocked
-		reached[1][83] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->value[ Index(((P1 *)this)->index, 3) ];
-		((P1 *)this)->value[ Index(((P1 *)this)->index, 3) ] = now.results[ Index(((P1 *)this)->i, 3) ];
+		reached[1][55] = 1;
+		(trpt+1)->bup.oval = now.value[ Index(((P1 *)this)->index, 3) ];
+		now.value[ Index(((P1 *)this)->index, 3) ] = now.results[ Index(((P1 *)this)->i, 3) ];
 #ifdef VAR_RANGES
-		logval(":init::value[:init::index]", ((P1 *)this)->value[ Index(((P1 *)this)->index, 3) ]);
+		logval("value[:init::index]", now.value[ Index(((P1 *)this)->index, 3) ]);
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 40: // STATE 84 - voter.pml:86 - [freq[index] = cont] (0:91:3 - 1)
+	case 30: // STATE 56 - voter.pml:51 - [freq[index] = count] (0:0:1 - 1)
 		IfNotBlocked
-		reached[1][84] = 1;
-		(trpt+1)->bup.ovals = grab_ints(3);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->freq[ Index(((P1 *)this)->index, 3) ];
-		((P1 *)this)->freq[ Index(((P1 *)this)->index, 3) ] = ((P1 *)this)->cont;
+		reached[1][56] = 1;
+		(trpt+1)->bup.oval = now.freq[ Index(((P1 *)this)->index, 3) ];
+		now.freq[ Index(((P1 *)this)->index, 3) ] = ((P1 *)this)->count;
 #ifdef VAR_RANGES
-		logval(":init::freq[:init::index]", ((P1 *)this)->freq[ Index(((P1 *)this)->index, 3) ]);
+		logval("freq[:init::index]", now.freq[ Index(((P1 *)this)->index, 3) ]);
 #endif
 		;
-		/* merge: index = (index+1)(91, 85, 91) */
-		reached[1][85] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->index;
+		_m = 3; goto P999; /* 0 */
+	case 31: // STATE 57 - voter.pml:52 - [index = (index+1)] (0:63:2 - 1)
+		IfNotBlocked
+		reached[1][57] = 1;
+		(trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->index;
 		((P1 *)this)->index = (((P1 *)this)->index+1);
 #ifdef VAR_RANGES
 		logval(":init::index", ((P1 *)this)->index);
 #endif
 		;
-		/* merge: .(goto)(91, 87, 91) */
-		reached[1][87] = 1;
+		/* merge: .(goto)(63, 59, 63) */
+		reached[1][59] = 1;
 		;
-		/* merge: i = (i+1)(91, 88, 91) */
-		reached[1][88] = 1;
-		(trpt+1)->bup.ovals[2] = ((P1 *)this)->i;
+		/* merge: i = (i+1)(63, 60, 63) */
+		reached[1][60] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->i;
 		((P1 *)this)->i = (((P1 *)this)->i+1);
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)this)->i);
 #endif
 		;
-		/* merge: .(goto)(0, 92, 91) */
-		reached[1][92] = 1;
+		/* merge: .(goto)(0, 64, 63) */
+		reached[1][64] = 1;
 		;
-		_m = 3; goto P999; /* 4 */
-	case 41: // STATE 88 - voter.pml:64 - [i = (i+1)] (0:91:1 - 3)
+		_m = 3; goto P999; /* 3 */
+	case 32: // STATE 60 - voter.pml:29 - [i = (i+1)] (0:63:1 - 3)
 		IfNotBlocked
-		reached[1][88] = 1;
+		reached[1][60] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->i;
 		((P1 *)this)->i = (((P1 *)this)->i+1);
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)this)->i);
 #endif
 		;
-		/* merge: .(goto)(0, 92, 91) */
-		reached[1][92] = 1;
+		/* merge: .(goto)(0, 64, 63) */
+		reached[1][64] = 1;
 		;
 		_m = 3; goto P999; /* 1 */
-	case 42: // STATE 94 - voter.pml:91 - [printf('Results: ')] (0:101:1 - 3)
+	case 33: // STATE 66 - voter.pml:56 - [printf('Results: ')] (0:73:1 - 3)
 		IfNotBlocked
-		reached[1][94] = 1;
+		reached[1][66] = 1;
 		Printf("Results: ");
-		/* merge: i = 0(101, 95, 101) */
-		reached[1][95] = 1;
+		/* merge: i = 0(73, 67, 73) */
+		reached[1][67] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->i;
 		((P1 *)this)->i = 0;
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)this)->i);
 #endif
 		;
-		/* merge: .(goto)(0, 102, 101) */
-		reached[1][102] = 1;
+		/* merge: .(goto)(0, 74, 73) */
+		reached[1][74] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 43: // STATE 96 - voter.pml:93 - [((i<=(3-1)))] (0:0:0 - 1)
+	case 34: // STATE 68 - voter.pml:58 - [((i<=(3-1)))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][96] = 1;
+		reached[1][68] = 1;
 		if (!((((P1 *)this)->i<=(3-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 44: // STATE 97 - voter.pml:94 - [printf('%d ',results[i])] (0:0:0 - 1)
+	case 35: // STATE 69 - voter.pml:59 - [printf('%d ',results[i])] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][97] = 1;
+		reached[1][69] = 1;
 		Printf("%d ", now.results[ Index(((P1 *)this)->i, 3) ]);
 		_m = 3; goto P999; /* 0 */
-	case 45: // STATE 98 - voter.pml:93 - [i = (i+1)] (0:0:1 - 1)
+	case 36: // STATE 70 - voter.pml:58 - [i = (i+1)] (0:0:1 - 1)
 		IfNotBlocked
-		reached[1][98] = 1;
+		reached[1][70] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->i;
 		((P1 *)this)->i = (((P1 *)this)->i+1);
 #ifdef VAR_RANGES
@@ -619,222 +481,306 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 46: // STATE 104 - voter.pml:104 - [(((3%2)==0))] (123:0:3 - 1)
+	case 37: // STATE 76 - voter.pml:61 - [printf('\\n')] (0:81:0 - 3)
 		IfNotBlocked
-		reached[1][104] = 1;
+		reached[1][76] = 1;
+		Printf("\n");
+		_m = 3; goto P999; /* 0 */
+	case 38: // STATE 77 - voter.pml:70 - [(((3%2)==0))] (96:0:3 - 1)
+		IfNotBlocked
+		reached[1][77] = 1;
 		if (!(((3%2)==0)))
 			continue;
-		/* merge: cont = (3/2)(123, 105, 123) */
-		reached[1][105] = 1;
+		/* merge: count = (3/2)(96, 78, 96) */
+		reached[1][78] = 1;
 		(trpt+1)->bup.ovals = grab_ints(3);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = (3/2);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
+		((P1 *)this)->count = (3/2);
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::count", ((P1 *)this)->count);
 #endif
 		;
-		/* merge: .(goto)(123, 109, 123) */
-		reached[1][109] = 1;
+		/* merge: .(goto)(96, 82, 96) */
+		reached[1][82] = 1;
 		;
-		/* merge: y = 999(123, 110, 123) */
-		reached[1][110] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
-		((P1 *)this)->y = 999;
+		/* merge: j = 999(96, 83, 96) */
+		reached[1][83] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
+		((P1 *)this)->j = 999;
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: i = 0(123, 111, 123) */
-		reached[1][111] = 1;
+		/* merge: i = 0(96, 84, 96) */
+		reached[1][84] = 1;
 		(trpt+1)->bup.ovals[2] = ((P1 *)this)->i;
 		((P1 *)this)->i = 0;
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)this)->i);
 #endif
 		;
-		/* merge: .(goto)(0, 124, 123) */
-		reached[1][124] = 1;
+		/* merge: .(goto)(0, 97, 96) */
+		reached[1][97] = 1;
 		;
 		_m = 3; goto P999; /* 5 */
-	case 47: // STATE 107 - voter.pml:105 - [cont = ((3/2)+1)] (0:123:3 - 1)
+	case 39: // STATE 80 - voter.pml:71 - [count = ((3/2)+1)] (0:96:3 - 1)
 		IfNotBlocked
-		reached[1][107] = 1;
+		reached[1][80] = 1;
 		(trpt+1)->bup.ovals = grab_ints(3);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = ((3/2)+1);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
+		((P1 *)this)->count = ((3/2)+1);
 #ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
+		logval(":init::count", ((P1 *)this)->count);
 #endif
 		;
-		/* merge: .(goto)(123, 109, 123) */
-		reached[1][109] = 1;
+		/* merge: .(goto)(96, 82, 96) */
+		reached[1][82] = 1;
 		;
-		/* merge: y = 999(123, 110, 123) */
-		reached[1][110] = 1;
-		(trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
-		((P1 *)this)->y = 999;
+		/* merge: j = 999(96, 83, 96) */
+		reached[1][83] = 1;
+		(trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
+		((P1 *)this)->j = 999;
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: i = 0(123, 111, 123) */
-		reached[1][111] = 1;
+		/* merge: i = 0(96, 84, 96) */
+		reached[1][84] = 1;
 		(trpt+1)->bup.ovals[2] = ((P1 *)this)->i;
 		((P1 *)this)->i = 0;
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)this)->i);
 #endif
 		;
-		/* merge: .(goto)(0, 124, 123) */
-		reached[1][124] = 1;
+		/* merge: .(goto)(0, 97, 96) */
+		reached[1][97] = 1;
 		;
 		_m = 3; goto P999; /* 4 */
-	case 48: // STATE 110 - voter.pml:108 - [y = 999] (0:123:2 - 3)
+	case 40: // STATE 83 - voter.pml:74 - [j = 999] (0:96:2 - 3)
 		IfNotBlocked
-		reached[1][110] = 1;
+		reached[1][83] = 1;
 		(trpt+1)->bup.ovals = grab_ints(2);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->y;
-		((P1 *)this)->y = 999;
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->j;
+		((P1 *)this)->j = 999;
 #ifdef VAR_RANGES
-		logval(":init::y", ((P1 *)this)->y);
+		logval(":init::j", ((P1 *)this)->j);
 #endif
 		;
-		/* merge: i = 0(123, 111, 123) */
-		reached[1][111] = 1;
+		/* merge: i = 0(96, 84, 96) */
+		reached[1][84] = 1;
 		(trpt+1)->bup.ovals[1] = ((P1 *)this)->i;
 		((P1 *)this)->i = 0;
 #ifdef VAR_RANGES
 		logval(":init::i", ((P1 *)this)->i);
 #endif
 		;
-		/* merge: .(goto)(0, 124, 123) */
-		reached[1][124] = 1;
+		/* merge: .(goto)(0, 97, 96) */
+		reached[1][97] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 49: // STATE 112 - voter.pml:109 - [((i<=(index-1)))] (0:0:0 - 1)
+	case 41: // STATE 85 - voter.pml:75 - [((i<=(index-1)))] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][112] = 1;
+		reached[1][85] = 1;
 		if (!((((P1 *)this)->i<=(((P1 *)this)->index-1))))
 			continue;
 		_m = 3; goto P999; /* 0 */
-	case 50: // STATE 113 - voter.pml:111 - [(((freq[i]>=cont)&&(value[i]<y)))] (123:0:5 - 1)
+	case 42: // STATE 86 - voter.pml:77 - [(((freq[i]>=count)&&(value[i]<j)))] (0:0:2 - 1)
 		IfNotBlocked
-		reached[1][113] = 1;
-		if (!(((((P1 *)this)->freq[ Index(((P1 *)this)->i, 3) ]>=((P1 *)this)->cont)&&(((P1 *)this)->value[ Index(((P1 *)this)->i, 3) ]<((P1 *)this)->y))))
+		reached[1][86] = 1;
+		if (!(((now.freq[ Index(((P1 *)this)->i, 3) ]>=((P1 *)this)->count)&&(now.value[ Index(((P1 *)this)->i, 3) ]<((P1 *)this)->j))))
 			continue;
 		if (TstOnly) return 1; /* TT */
-		/* dead 1: cont */  (trpt+1)->bup.ovals = grab_ints(5);
-		(trpt+1)->bup.ovals[0] = ((P1 *)this)->cont;
+		/* dead 1: count */  (trpt+1)->bup.ovals = grab_ints(2);
+		(trpt+1)->bup.ovals[0] = ((P1 *)this)->count;
 #ifdef HAS_CODE
 		if (!readtrail)
 #endif
-			((P1 *)this)->cont = 0;
+			((P1 *)this)->count = 0;
 		if (TstOnly) return 1; /* TT */
-		/* dead 1: y */  (trpt+1)->bup.ovals[1] = ((P1 *)this)->y;
+		/* dead 1: j */  (trpt+1)->bup.ovals[1] = ((P1 *)this)->j;
 #ifdef HAS_CODE
 		if (!readtrail)
 #endif
-			((P1 *)this)->y = 0;
-		/* merge: y = value[i](123, 114, 123) */
+			((P1 *)this)->j = 0;
+		_m = 3; goto P999; /* 0 */
+	case 43: // STATE 87 - voter.pml:77 - [j = value[i]] (0:0:1 - 1)
+		IfNotBlocked
+		reached[1][87] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->j;
+		((P1 *)this)->j = now.value[ Index(((P1 *)this)->i, 3) ];
+#ifdef VAR_RANGES
+		logval(":init::j", ((P1 *)this)->j);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 44: // STATE 88 - voter.pml:77 - [count = freq[i]] (0:0:1 - 1)
+		IfNotBlocked
+		reached[1][88] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->count;
+		((P1 *)this)->count = now.freq[ Index(((P1 *)this)->i, 3) ];
+#ifdef VAR_RANGES
+		logval(":init::count", ((P1 *)this)->count);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 45: // STATE 90 - voter.pml:78 - [(1)] (96:0:1 - 1)
+		IfNotBlocked
+		reached[1][90] = 1;
+		if (!(1))
+			continue;
+		/* merge: .(goto)(96, 92, 96) */
+		reached[1][92] = 1;
+		;
+		/* merge: i = (i+1)(96, 93, 96) */
+		reached[1][93] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->i;
+		((P1 *)this)->i = (((P1 *)this)->i+1);
+#ifdef VAR_RANGES
+		logval(":init::i", ((P1 *)this)->i);
+#endif
+		;
+		/* merge: .(goto)(0, 97, 96) */
+		reached[1][97] = 1;
+		;
+		_m = 3; goto P999; /* 3 */
+	case 46: // STATE 93 - voter.pml:75 - [i = (i+1)] (0:96:1 - 3)
+		IfNotBlocked
+		reached[1][93] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->i;
+		((P1 *)this)->i = (((P1 *)this)->i+1);
+#ifdef VAR_RANGES
+		logval(":init::i", ((P1 *)this)->i);
+#endif
+		;
+		/* merge: .(goto)(0, 97, 96) */
+		reached[1][97] = 1;
+		;
+		_m = 3; goto P999; /* 1 */
+	case 47: // STATE 100 - voter.pml:109 - [(((j!=999)&&(j!=0)))] (133:0:0 - 1)
+		IfNotBlocked
+		reached[1][100] = 1;
+		if (!(((((P1 *)this)->j!=999)&&(((P1 *)this)->j!=0))))
+			continue;
+		/* merge: printf('\\n\\nFinal Result:\\t%d\\n',j)(0, 101, 133) */
+		reached[1][101] = 1;
+		Printf("\n\nFinal Result:\t%d\n", ((P1 *)this)->j);
+		/* merge: goto :b1(0, 102, 133) */
+		reached[1][102] = 1;
+		;
+		_m = 3; goto P999; /* 2 */
+	case 48: // STATE 104 - voter.pml:110 - [rep = 1] (0:0:1 - 1)
+		IfNotBlocked
+		reached[1][104] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->rep;
+		((P1 *)this)->rep = 1;
+#ifdef VAR_RANGES
+		logval(":init::rep", ((P1 *)this)->rep);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 49: // STATE 107 - voter.pml:114 - [i = 0] (0:0:1 - 1)
+		IfNotBlocked
+		reached[1][107] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->i;
+		((P1 *)this)->i = 0;
+#ifdef VAR_RANGES
+		logval(":init::i", ((P1 *)this)->i);
+#endif
+		;
+		_m = 3; goto P999; /* 0 */
+	case 50: // STATE 108 - voter.pml:114 - [((i<=(3-1)))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][108] = 1;
+		if (!((((P1 *)this)->i<=(3-1))))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 51: // STATE 109 - voter.pml:118 - [((rep==1))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][109] = 1;
+		if (!((((P1 *)this)->rep==1)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 52: // STATE 110 - voter.pml:118 - [(run P(i))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][110] = 1;
+		if (!(addproc(II, 1, 0, ((P1 *)this)->i)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 53: // STATE 112 - voter.pml:119 - [(1)] (118:0:1 - 1)
+		IfNotBlocked
+		reached[1][112] = 1;
+		if (!(1))
+			continue;
+		/* merge: .(goto)(118, 114, 118) */
 		reached[1][114] = 1;
-		(trpt+1)->bup.ovals[2] = ((P1 *)this)->y;
-		((P1 *)this)->y = ((P1 *)this)->value[ Index(((P1 *)this)->i, 3) ];
+		;
+		/* merge: i = (i+1)(118, 115, 118) */
+		reached[1][115] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->i;
+		((P1 *)this)->i = (((P1 *)this)->i+1);
+#ifdef VAR_RANGES
+		logval(":init::i", ((P1 *)this)->i);
+#endif
+		;
+		/* merge: .(goto)(0, 119, 118) */
+		reached[1][119] = 1;
+		;
+		_m = 3; goto P999; /* 3 */
+	case 54: // STATE 115 - voter.pml:114 - [i = (i+1)] (0:118:1 - 3)
+		IfNotBlocked
+		reached[1][115] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->i;
+		((P1 *)this)->i = (((P1 *)this)->i+1);
+#ifdef VAR_RANGES
+		logval(":init::i", ((P1 *)this)->i);
+#endif
+		;
+		/* merge: .(goto)(0, 119, 118) */
+		reached[1][119] = 1;
+		;
+		_m = 3; goto P999; /* 1 */
+	case 55: // STATE 122 - voter.pml:124 - [((_nr_pr==1))] (0:0:0 - 1)
+		IfNotBlocked
+		reached[1][122] = 1;
+		if (!((((int)now._nr_pr)==1)))
+			continue;
+		_m = 3; goto P999; /* 0 */
+	case 56: // STATE 123 - voter.pml:104 - [y = (y+1)] (0:0:1 - 1)
+		IfNotBlocked
+		reached[1][123] = 1;
+		(trpt+1)->bup.oval = ((P1 *)this)->y;
+		((P1 *)this)->y = (((P1 *)this)->y+1);
 #ifdef VAR_RANGES
 		logval(":init::y", ((P1 *)this)->y);
 #endif
 		;
-		/* merge: cont = freq[i](123, 115, 123) */
-		reached[1][115] = 1;
-		(trpt+1)->bup.ovals[3] = ((P1 *)this)->cont;
-		((P1 *)this)->cont = ((P1 *)this)->freq[ Index(((P1 *)this)->i, 3) ];
-#ifdef VAR_RANGES
-		logval(":init::cont", ((P1 *)this)->cont);
-#endif
-		;
-		/* merge: .(goto)(123, 119, 123) */
-		reached[1][119] = 1;
-		;
-		/* merge: i = (i+1)(123, 120, 123) */
-		reached[1][120] = 1;
-		(trpt+1)->bup.ovals[4] = ((P1 *)this)->i;
-		((P1 *)this)->i = (((P1 *)this)->i+1);
-#ifdef VAR_RANGES
-		logval(":init::i", ((P1 *)this)->i);
-#endif
-		;
-		/* merge: .(goto)(0, 124, 123) */
-		reached[1][124] = 1;
-		;
-		_m = 3; goto P999; /* 5 */
-	case 51: // STATE 117 - voter.pml:112 - [(1)] (123:0:1 - 1)
-		IfNotBlocked
-		reached[1][117] = 1;
-		if (!(1))
-			continue;
-		/* merge: .(goto)(123, 119, 123) */
-		reached[1][119] = 1;
-		;
-		/* merge: i = (i+1)(123, 120, 123) */
-		reached[1][120] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->i;
-		((P1 *)this)->i = (((P1 *)this)->i+1);
-#ifdef VAR_RANGES
-		logval(":init::i", ((P1 *)this)->i);
-#endif
-		;
-		/* merge: .(goto)(0, 124, 123) */
-		reached[1][124] = 1;
-		;
-		_m = 3; goto P999; /* 3 */
-	case 52: // STATE 120 - voter.pml:109 - [i = (i+1)] (0:123:1 - 3)
-		IfNotBlocked
-		reached[1][120] = 1;
-		(trpt+1)->bup.oval = ((P1 *)this)->i;
-		((P1 *)this)->i = (((P1 *)this)->i+1);
-#ifdef VAR_RANGES
-		logval(":init::i", ((P1 *)this)->i);
-#endif
-		;
-		/* merge: .(goto)(0, 124, 123) */
-		reached[1][124] = 1;
-		;
-		_m = 3; goto P999; /* 1 */
-	case 53: // STATE 126 - voter.pml:116 - [printf('\\n\\nFinal Result: ')] (0:131:0 - 3)
-		IfNotBlocked
-		reached[1][126] = 1;
-		Printf("\n\nFinal Result: ");
 		_m = 3; goto P999; /* 0 */
-	case 54: // STATE 127 - voter.pml:118 - [((y==999))] (133:0:1 - 1)
+	case 57: // STATE 129 - voter.pml:128 - [(((j==999)||(j==0)))] (135:0:1 - 1)
 		IfNotBlocked
-		reached[1][127] = 1;
-		if (!((((P1 *)this)->y==999)))
+		reached[1][129] = 1;
+		if (!(((((P1 *)this)->j==999)||(((P1 *)this)->j==0))))
 			continue;
 		if (TstOnly) return 1; /* TT */
-		/* dead 1: y */  (trpt+1)->bup.oval = ((P1 *)this)->y;
+		/* dead 1: j */  (trpt+1)->bup.oval = ((P1 *)this)->j;
 #ifdef HAS_CODE
 		if (!readtrail)
 #endif
-			((P1 *)this)->y = 0;
-		/* merge: printf('Unable to find results\\n')(0, 128, 133) */
-		reached[1][128] = 1;
-		Printf("Unable to find results\n");
-		/* merge: .(goto)(0, 132, 133) */
-		reached[1][132] = 1;
+			((P1 *)this)->j = 0;
+		/* merge: printf('\\n\\nFinal Result:\\tUnable to find results\\n')(0, 130, 135) */
+		reached[1][130] = 1;
+		Printf("\n\nFinal Result:\tUnable to find results\n");
+		/* merge: .(goto)(0, 134, 135) */
+		reached[1][134] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 55: // STATE 130 - voter.pml:119 - [printf('%d\\n',y)] (0:0:0 - 1)
+	case 58: // STATE 135 - voter.pml:131 - [-end-] (0:0:0 - 3)
 		IfNotBlocked
-		reached[1][130] = 1;
-		Printf("%d\n", ((P1 *)this)->y);
-		_m = 3; goto P999; /* 0 */
-	case 56: // STATE 133 - voter.pml:121 - [-end-] (0:0:0 - 3)
-		IfNotBlocked
-		reached[1][133] = 1;
+		reached[1][135] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 
 		 /* PROC P */
-	case 57: // STATE 1 - voter.pml:13 - [temp = 2] (0:0:1 - 1)
+	case 59: // STATE 1 - voter.pml:13 - [temp = 2] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][1] = 1;
 		(trpt+1)->bup.oval = ((P0 *)this)->temp;
@@ -844,7 +790,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 58: // STATE 2 - voter.pml:14 - [temp = 3] (0:0:1 - 1)
+	case 60: // STATE 2 - voter.pml:14 - [temp = 3] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][2] = 1;
 		(trpt+1)->bup.oval = ((P0 *)this)->temp;
@@ -854,7 +800,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 59: // STATE 3 - voter.pml:15 - [temp = 5] (0:0:1 - 1)
+	case 61: // STATE 3 - voter.pml:15 - [temp = 5] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][3] = 1;
 		(trpt+1)->bup.oval = ((P0 *)this)->temp;
@@ -864,7 +810,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 60: // STATE 4 - voter.pml:16 - [temp = timeout] (0:0:1 - 1)
+	case 62: // STATE 4 - voter.pml:16 - [temp = timeout] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][4] = 1;
 		(trpt+1)->bup.oval = ((P0 *)this)->temp;
@@ -874,7 +820,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 61: // STATE 7 - voter.pml:20 - [((n==-(1)))] (0:0:1 - 1)
+	case 63: // STATE 7 - voter.pml:20 - [((n==-(1)))] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][7] = 1;
 		if (!((((P0 *)this)->n== -(1))))
@@ -886,7 +832,7 @@
 #endif
 			((P0 *)this)->n = 0;
 		_m = 3; goto P999; /* 0 */
-	case 62: // STATE 8 - voter.pml:20 - [results[(_pid-1)] = temp] (0:0:1 - 1)
+	case 64: // STATE 8 - voter.pml:20 - [results[(_pid-1)] = temp] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][8] = 1;
 		(trpt+1)->bup.oval = now.results[ Index((((int)((P0 *)this)->_pid)-1), 3) ];
@@ -896,7 +842,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 63: // STATE 10 - voter.pml:21 - [results[n] = temp] (0:0:1 - 1)
+	case 65: // STATE 10 - voter.pml:21 - [results[n] = temp] (0:0:1 - 1)
 		IfNotBlocked
 		reached[0][10] = 1;
 		(trpt+1)->bup.oval = now.results[ Index(((P0 *)this)->n, 3) ];
@@ -906,7 +852,7 @@
 #endif
 		;
 		_m = 3; goto P999; /* 0 */
-	case 64: // STATE 13 - voter.pml:23 - [-end-] (0:0:0 - 3)
+	case 66: // STATE 13 - voter.pml:23 - [-end-] (0:0:0 - 3)
 		IfNotBlocked
 		reached[0][13] = 1;
 		if (!delproc(1, II)) continue;

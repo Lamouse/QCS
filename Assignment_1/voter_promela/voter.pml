@@ -1,6 +1,6 @@
 #define N 3
 #define range 1
-short results[N];
+int results[N], value[N], freq[N]; 
 
 proctype P(int n) {
 	short temp;
@@ -23,9 +23,71 @@ proctype P(int n) {
 }
 
 
+inline voter(index, i, j, count) {
+	//calculate the frequency of each result
+	index = 0;
+	for(i : 0..(N-1)) {
+		//check if value already viewed
+		count = 0;
+		for(j : 0..(index-1)) {
+			if
+			:: results[i] == value[j] -> count = 1;
+			:: else -> skip;
+			fi
+		}
+
+		if
+		::count == 1 -> skip;
+		::else -> 	count = 0;
+					for(j : 0..(N-1)) {
+					if
+					:: results[i] == results[j] -> count = count + 1;
+					:: results[i] == results[j] - range -> count = count + 1;
+					:: results[i] == results[j] + range -> count = count + 1;
+					:: else -> skip;
+					fi
+					}
+					value[index] = results[i];
+					freq[index] = count;
+					index = index + 1;
+		fi
+	}
+
+	printf("Results: ")
+	//prints just for test
+	for(i : 0..(N-1)) {
+		printf("%d ", results[i]);
+	}
+	printf("\n");
+	// printf("values and frequencies (%d)\n", index);
+	// for(i : 0..(index-1)) {
+	// 	 printf("%d: %d\n", value[i], freq[i]);
+	// }
+
+
+	//display the most frequent result if its frequency is equal or bigger than half of the total elements
+	if
+	:: N%2 == 0 -> count = N/2;
+	:: else -> count = N/2 + 1;
+	fi
+
+	j = 999;
+	for(i : 0..(index-1)) {
+		if 
+		::freq[i] >= count && value[i] < j -> j = value[i]; count = freq[i];
+		::else -> skip;
+		fi
+	}
+
+	// printf("\n\nFinal Result: ");
+	// if 
+	// ::j == 999 -> printf("Unable to find results\n");
+	// ::else -> printf("%d\n", j);
+	// fi
+}
+
 init {
-	int i, y, cont, index;
-	int value[N], freq[N]; 
+	int i, y, j, count, index, rep;
 
 	//first execution
 	atomic {
@@ -40,82 +102,30 @@ init {
 	//take care of timeouts
 	//max more two executions
 	for(y : 0..1) {
-		cont = 0;
+		rep = 0;
+
+		voter(index, i, j, count);
+		if
+		::j != 999 && j != 0 -> printf("\n\nFinal Result:\t%d\n", j); break;
+		::else -> rep = 1;
+		fi
+
 		atomic {
 			for(i : 0..(N-1)) {
 				if
-				:: results[i] == 0 -> run P(i);
-				:: else -> cont = cont + 1;
+				//ñ vale a pena correr processos com timeout quando já se tem uma resposta valida
+				//:: results[i] == 0 -> run P(i);
+				:: rep == 1 -> run P(i);
+				:: else -> skip;
 				fi
 			}
 		}
 
 		(_nr_pr == 1);
-
-		if
-		::cont == N -> break;
-		::else -> skip;
-		fi
 	}
 
-
-	//calculate the frequency of each result
-	index = 0;
-	for(i : 0..(N-1)) {
-		//check if value already viewed
-		cont = 0;
-		for(y : 0..(index-1)) {
-			if
-			:: results[i] == value[y] -> cont = 1;
-			:: else -> skip;
-			fi
-		}
-
-		if
-		::cont == 1 -> skip;
-		::else -> 	cont = 0;
-					for(y : 0..(N-1)) {
-					if
-					:: results[i] == results[y] -> cont = cont + 1;
-					:: results[i] == results[y] - range -> cont = cont + 1;
-					:: results[i] == results[y] + range -> cont = cont + 1;
-					:: else -> skip;
-					fi
-					}
-					value[index] = results[i];
-					freq[index] = cont;
-					index = index + 1;
-		fi
-	}
-
-	printf("Results: ")
-	//prints just for test
-	for(i : 0..(N-1)) {
-		printf("%d ", results[i]);
-	}
-	// printf("values and frequencies (%d)\n", index);
-	// for(i : 0..(index-1)) {
-	// 	 printf("%d: %d\n", value[i], freq[i]);
-	// }
-
-
-	//display the most frequent result if its frequency is equal or bigger than half of the total elements
 	if
-	:: N%2 == 0 -> cont = N/2;
-	:: else -> cont = N/2 + 1;
-	fi
-
-	y = 999;
-	for(i : 0..(index-1)) {
-		if 
-		::freq[i] >= cont && value[i] < y -> y = value[i]; cont = freq[i];
-		::else -> skip;
-		fi
-	}
-
-	printf("\n\nFinal Result: ");
-	if 
-	::y == 999 -> printf("Unable to find results\n");
-	::else -> printf("%d\n", y);
+	::j == 999 || j == 0 -> printf("\n\nFinal Result:\tUnable to find results\n");
+	::else -> skip;
 	fi
 }

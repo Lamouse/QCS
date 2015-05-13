@@ -130,10 +130,10 @@ typedef struct S_F_MAP {
 	int upto;
 } S_F_MAP;
 
-#define nstates1	134	/* :init: */
+#define nstates1	136	/* :init: */
 #define minseq1	13
-#define maxseq1	145
-#define endstate1	133
+#define maxseq1	147
+#define endstate1	135
 
 #define nstates0	14	/* P */
 #define minseq0	0
@@ -146,8 +146,8 @@ extern S_F_MAP src_file1[];
 extern S_F_MAP src_file0[];
 
 #define T_ID	unsigned char
-#define _T5	65
-#define _T2	66
+#define _T5	67
+#define _T2	68
 #define WS		8 /* word size in bytes */
 #define SYNC	0
 #define ASYNC	0
@@ -172,12 +172,12 @@ typedef struct P1 { /* :init: */
 #endif
 	int i;
 	int y;
-	int cont;
+	int j;
+	int count;
 	int index;
-	int value[3];
-	int freq[3];
+	int rep;
 } P1;
-#define Air1	(sizeof(P1) - Offsetof(P1, freq) - 3*sizeof(int))
+#define Air1	(sizeof(P1) - Offsetof(P1, rep) - 1*sizeof(int))
 
 #define PP	((P0 *)this)
 typedef struct P0 { /* P */
@@ -392,7 +392,9 @@ typedef struct State {
 		unsigned short _event;
 	#endif
 #endif
-	short results[3];
+	int results[3];
+	int value[3];
+	int freq[3];
 #ifdef TRIX
 	/* room for 512 proc+chan ptrs, + safety margin */
 	char *_ids_[MAXPROC+MAXQ+4];
@@ -776,7 +778,7 @@ void qsend(int, int, int);
 #define GLOBAL	7
 #define BAD	8
 #define ALPHA_F	9
-#define NTRANS	67
+#define NTRANS	69
 #if defined(BFS_PAR) || NCORE>1
 	void e_critical(int);
 	void x_critical(int);
