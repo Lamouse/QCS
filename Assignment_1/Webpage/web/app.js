@@ -35,25 +35,16 @@ app.directive("addphysical", function($compile){
 		element.bind("click", function(){
 			scope.count++;
             if (scope.count <= 10) {
-                angular.element(document.getElementById('space-for-physical')).append($compile("<label for=\"l1_"+scope.count+"\" class=\"col-sm-1 control-label\">"+scope.count
-                                        +".</label> <div class=\"col-sm-10\" style=\"padding-top: 15px;\">"
+                angular.element(document.getElementById('space-for-physical')).append($compile("<label for=\"l1_"+scope.count+"\" class=\"col-sm-1 control-label\">"
                                         + "<input type=\"number\"id=\"l1_"+scope.count+"\" name=\"l1_"+scope.count+"\" class=\"form-control\" ng-model=\"list1_"+scope.count+"\" ng-pattern=\"integerval\" min=\"0\" max=\"10\" required>"
 
-                                        +"<div class=\"error\" ng-show=\"form2.l1_"+scope.count+".$invalid\"> <small class=\"error\" ng-show=\"form2.l1_"+scope.count+".$invalid\">Should be an integer between 0 and 10.</small></div>"
+                                        +"<small class=\"error\" ng-show=\"form2.l1_"+scope.count+".$invalid\">Should be an integer between 0 and 10.</small>
                                     +  "</div>")(scope));
 
-                angular.element(document.getElementById('space-for-sugar')).append($compile("<label for=\"l2_"+scope.count+"\" class=\"col-sm-1 control-label\">"+scope.count
-                                        +".</label> <div class=\"col-sm-10\" style=\"padding-top: 15px;\">"
+                angular.element(document.getElementById('space-for-sugar')).append($compile("<label for=\"l2_"+scope.count+"\" class=\"col-sm-1 control-label\">"
                                         + "<input type=\"number\" id=\"l2_"+scope.count+"\"id=\"l2_"+scope.count+"\" ng-model=\"list2_"+scope.count+"\" ng-pattern=\"integerval\" class=\"form-control\" min=\"15\" max=\"100\" required>"
-                                        +"<div class=\"error\" ng-show=\"form2.l2_"+scope.count+".$invalid\"> <small class=\"error\" ng-show=\"form2.l2_"+scope.count+".$invalid\">Should be an integer between 15 and 100.</small></div>"
-=======
-                angular.element(document.getElementById('space-for-physical')).append($compile("<div style=\"padding-top: 15px;\">"
-                                        + "<input type=\"number\" class=\"form-control\" min=\"0\" max=\"10\" required>"
-                                    +  "</div>")(scope));
-
-                angular.element(document.getElementById('space-for-sugar')).append($compile("<div style=\"padding-top: 15px;\">"
-                                        + "<input type=\"number\" class=\"form-control\" min=\"15\" max=\"100\" required>"
-                                    +  "</div>")(scope));
+                                        +"<small class=\"error\" ng-show=\"form2.l2_"+scope.count+".$invalid\">Should be an integer between 15 and 100.</small>
+                                     +  "</div>")(scope));
               }
           });
 	};
