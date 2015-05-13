@@ -18,6 +18,7 @@
 </head>
 <body>
 <h2>The result of your request is:</h2>
+<%= back.getResult()%>
 
 </body>
 </html>

@@ -206,9 +206,25 @@
                                     <h3 class="panel-title">Physical Activity Level</h3>
                                 </div>
                                 <div class="panel-body" id="space-for-physical">
-                                
+                                    <label for="l1_1" class="col-sm-1 control-label">1.</label>
+                                    <div class="col-sm-10" style="padding-top: 15px;">
+                                        <input type="number" id="l1_1" name="l1_1" class="form-control" ng-model="list1_1" ng-pattern="integerval" min="0" max="10" required>
+                                        <div class="error" ng-show="form2.l1_1.$invalid">
+                                            <small class="error" ng-show="form2.l1_1.$invalid">
+                                                Should be an integer between 0 and 10.
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <label for="l1_2" class="col-sm-1 control-label">2.</label>
+                                    <div class="col-sm-10" style="padding-top: 15px;">
+                                        <input type="number" id="l1_2" name="l1_2" class="form-control" ng-model="list1_2" ng-pattern="integerval" min="0" max="10" required>
+                                        <div class="error" ng-show="form2.l1_2.$invalid">
+                                            <small class="error" ng-show="form2.l1_2.$invalid">
+                                                Should be an integer between 0 and 10.
+                                            </small>
+                                        </div>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
 
@@ -218,13 +234,23 @@
                                     <h3 class="panel-title">Drops in Blood Sugar</h3>
                                 </div>
                                 <div class="panel-body" id="space-for-sugar">
-                                    <label for="l1_1" class="col-sm-1 control-label">1.</label>
+                                    <label for="l2_1" class="col-sm-1 control-label">1.</label>
                                     <div class="col-sm-10" style="padding-top: 15px;">
-                                        <input type="number" id="l1_1" class="form-control" min="0" max="10" required>
+                                        <input type="number" id="l2_1" name="l2_1" class="form-control" ng-model="list2_1" ng-pattern="integerval" min="15" max="100" required>
+                                        <div class="error" ng-show="form2.l2_1.$invalid">
+                                            <small class="error" ng-show="form2.l2_1.$invalid">
+                                                Should be an integer between 15 and 100.
+                                            </small>
+                                        </div>
                                     </div>
-                                    <label for="l1_2" class="col-sm-1 control-label">2.</label>
+                                    <label for="l2_2" class="col-sm-1 control-label">2.</label>
                                     <div class="col-sm-10" style="padding-top: 15px;">
-                                        <input type="number" id="l1_2" class="form-control" min="0" max="10" required>
+                                        <input type="number" id="l2_2" name="l2_2" class="form-control" ng-model="list2_2" ng-pattern="integerval" min="15" max="100" required>
+                                        <div class="error" ng-show="form2.l2_2.$invalid">
+                                            <small class="error" ng-show="form2.l2_2.$invalid">
+                                                Should be an integer between 15 and 100.
+                                            </small>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

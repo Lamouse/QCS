@@ -18,7 +18,7 @@
 </head>
 <body>
 <h2>The result of your request is:</h2>
-<%= back.getInput3_1()%>
+<%= back.getResult()%>
 
 </body>
 </html>
