@@ -33,13 +33,13 @@
     <!--<ul class="nav nav-tabs">
 <li role="presentation" class="active"><a href="#">Mealtime Insuline Dose - Standard Insulin Sensitivity</a></li>
 <li role="presentation"><a href="#">Mealtime Insuline Dose - Personal Insulin Sensitivity</a></li>
-<li role="presentation"><a href="#">Backgroug Insuline Dose</a></li>
+<li role="presentation"><a href="#">Background Insuline Dose</a></li>
 </ul>-->
     <section ng-controller="TabController as tab">
         <ul class="nav nav-tabs">
             <li ng-class="{active: tab.isSet(1)}"><a href ng-click="tab.setTab(1)">Mealtime Insuline Dose - Standard Insulin Sensitivity</a></li>
             <li ng-class="{active: tab.isSet(2)}"><a href ng-click="tab.setTab(2)">Mealtime Insuline Dose - Personal Insulin Sensitivity</a></li>
-            <li ng-class="{active: tab.isSet(3)}"><a href ng-click="tab.setTab(3)">Backgroug Insuline Dose</a></li>
+            <li ng-class="{active: tab.isSet(3)}"><a href ng-click="tab.setTab(3)">Background Insuline Dose</a></li>
         </ul>
 
         <div ng-show="tab.isSet(1)">

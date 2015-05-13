@@ -27,12 +27,13 @@ public class Voter {
             }
         }
 
-        /*for(i=0;i<n;i++) {
+
+        for(i=0;i<n;i++) {
             System.out.println(results[i]);
         }
         for(i=0;i<index;i++) {
             System.out.println(value[i]+"->"+freq[i]);
-        }*/
+        }
 
         if(n%2 == 0)
             count = (int) Math.floor(n/2);
