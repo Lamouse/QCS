@@ -37,9 +37,9 @@ app.directive("addphysical", function($compile){
             //console.log(count);
             if (count <= 10) {
                 angular.element(document.getElementById('space-for-physical')).append($compile("<div id=\"r1_"+count+"\"><label for=\"l1_"+count+"\" class=\"col-sm-1 control-label\">"+count+".</label>"
-                                        + "<div class=\"col-sm-10\" style=\"padding-top: 15px;\"> <input type=\"number\"id=\"l1_"+count+"\" name=\"l1_"+count+"\" class=\"form-control\" ng-model=\"list1_"+count+"\" ng-pattern=\"integerval\" min=\"0\" max=\"10\" required>"
+                                        + "<div class=\"col-sm-10\" style=\"padding-top: 15px;\"> <input type=\"number\"id=\"l1_"+count+"\" name=\"l1_"+count+"\" class=\"form-control\" ng-model=\"list1_"+count+"\"min=\"0\" max=\"10\" required>"
 
-                                        +"<small class=\"error\" ng-show=\"form2.l1_"+count+".$invalid\">Should be an integer between 0 and 10.</small>"
+                                        +"<small class=\"error\" ng-show=\"form2.l1_"+count+".$invalid\">\nShould be an integer between 0 and 10.</small>"
                                     +  "</div></div>")(scope));
 
                 angular.element(document.getElementById('space-for-sugar')).append($compile("<div id=\"r2_"+count+"\"><label for=\"l2_"+count+"\" class=\"col-sm-1 control-label\">"+count+".</label>"
