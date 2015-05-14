@@ -23,7 +23,7 @@ app.directive("addbuttonphysical", function(){
 
   return {
     restrict: "E",
-    template: "<button ng-click=\"counter()\" ng-init=\"count=2\" addphysical type=\"button\" class=\"btn btn-default\" style=\"float: right; margin-bottom:10px; margin-right:100px;\">"
+    template: "<button id=\"teste\" ng-click=\"counter()\" ng-init=\"count=2\" addphysical type=\"button\" class=\"btn btn-default\" style=\"float: right; margin-bottom:10px; margin-right:20px;\">"
             +      "<span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>Add"
             +  "</button>"
   }
@@ -33,22 +33,22 @@ app.directive("addbuttonphysical", function(){
 app.directive("addphysical", function($compile){
 	return function(scope, element, attrs){
 		element.bind("click", function(){
-			scope.count++;
-            if (scope.count <= 10) {
-                angular.element(document.getElementById('space-for-physical')).append($compile("<label for=\"l1_"+scope.count+"\" class=\"col-sm-1 control-label\">"+scope.count+".</label>"
-                                        + "<div class=\"col-sm-10\" style=\"padding-top: 15px;\"> <input type=\"number\"id=\"l1_"+scope.count+"\" name=\"l1_"+scope.count+"\" class=\"form-control\" ng-model=\"list1_"+scope.count+"\" ng-pattern=\"integerval\" min=\"0\" max=\"10\" required>"
+            count++;
+            //console.log(count);
+            if (count <= 10) {
+                angular.element(document.getElementById('space-for-physical')).append($compile("<div id=\"r1_"+count+"\"><label for=\"l1_"+count+"\" class=\"col-sm-1 control-label\">"+count+".</label>"
+                                        + "<div class=\"col-sm-10\" style=\"padding-top: 15px;\"> <input type=\"number\"id=\"l1_"+count+"\" name=\"l1_"+count+"\" class=\"form-control\" ng-model=\"list1_"+count+"\" ng-pattern=\"integerval\" min=\"0\" max=\"10\" required>"
 
-                                        /*+"<small class=\"error\" ng-show=\"form2.l1_"+scope.count+".$invalid\">Should be an integer between 0 and 10.</small>*/
-                                    +  "</div>")(scope));
+                                        +"<small class=\"error\" ng-show=\"form2.l1_"+count+".$invalid\">Should be an integer between 0 and 10.</small>"
+                                    +  "</div></div>")(scope));
 
-                angular.element(document.getElementById('space-for-sugar')).append($compile("<label for=\"l2_"+scope.count+"\" class=\"col-sm-1 control-label\">"+scope.count+".</label>"
-                                        + "<div class=\"col-sm-10\" style=\"padding-top: 15px;\"><input type=\"number\" id=\"l2_"+scope.count+"\"id=\"l2_"+scope.count+"\" ng-model=\"list2_"+scope.count+"\" ng-pattern=\"integerval\" class=\"form-control\" min=\"15\" max=\"100\" required>"
-                                        /*+"<small class=\"error\" ng-show=\"form2.l2_"+scope.count+".$invalid\">Should be an integer between 15 and 100.</small>*/
-                                     +  "</div>")(scope));
+                angular.element(document.getElementById('space-for-sugar')).append($compile("<div id=\"r2_"+count+"\"><label for=\"l2_"+count+"\" class=\"col-sm-1 control-label\">"+count+".</label>"
+                                        + "<div class=\"col-sm-10\" style=\"padding-top: 15px;\"><input type=\"number\" id=\"l2_"+count+"\"id=\"l2_"+count+"\" ng-model=\"list2_"+count+"\" ng-pattern=\"integerval\" class=\"form-control\" min=\"15\" max=\"100\" required>"
+                                        +"<small class=\"error\" ng-show=\"form2.l2_"+count+".$invalid\">Should be an integer between 15 and 100.</small>"
+                                     +  "</div></div>")(scope));
               }
           });
 	};
 });
-
 
 })();

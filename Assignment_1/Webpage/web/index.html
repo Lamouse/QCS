@@ -29,6 +29,9 @@
 <li role="presentation"><a href="#">Mealtime Insuline Dose - Personal Insulin Sensitivity</a></li>
 <li role="presentation"><a href="#">Backgroug Insuline Dose</a></li>
 </ul>-->
+    
+    <script>var count = 2;</script>
+    
     <section ng-controller="TabController as tab">
         <ul class="nav nav-tabs">
             <li ng-class="{active: tab.isSet(1)}"><a href ng-click="tab.setTab(1)">Mealtime Insuline Dose - Standard Insulin Sensitivity</a></li>
@@ -257,6 +260,9 @@
                         </div>
                     </div>
                     <addbuttonphysical></addbuttonphysical>
+                    <button onClick="func(this);" type="button" class="btn btn-default" style="float: right; margin-bottom:10px; margin-right:100px;">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Remove
+                    </button>
                 </div>
 
 
@@ -297,6 +303,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+    <script>
+    
+        function func () {
+            
+            var id1 = "#r1_" + count;
+            var id2 = "#r2_" + count;
+            
+            $(id1).remove();
+            $(id2).remove();
+            
+            if (count > 2) count--;
+        }
+    </script>
 
 </body>
 </html>
