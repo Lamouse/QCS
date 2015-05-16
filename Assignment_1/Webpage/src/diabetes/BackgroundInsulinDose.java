@@ -27,6 +27,7 @@ public class BackgroundInsulinDose {
         this.input3_1 = input3_1;
     }
 
+
     public int getResult() {
         int result = 0, i, temp;
 
@@ -48,8 +49,10 @@ public class BackgroundInsulinDose {
         return links[i];
     }
 
-    public int getWSResult(int i) {
-        return results[i];
+    public String getWSResult(int i) {
+        if (results[i] == -999)
+            return "Timeout";
+        return Integer.toString(results[i]);
     }
 
     private void execution() {
