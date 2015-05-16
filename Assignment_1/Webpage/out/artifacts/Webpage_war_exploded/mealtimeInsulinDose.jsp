@@ -20,5 +20,17 @@
 <h2>The result of your request is:</h2>
 <%= back.getResult()%>
 
+
+<br>
+<br>
+
+<button id="myButton" class="float-left submit-button" >Back to Calculator</button>
+
+<script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "index.html";
+    };
+</script>
+
 </body>
 </html>

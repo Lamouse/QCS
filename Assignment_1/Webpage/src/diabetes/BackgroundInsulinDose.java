@@ -45,6 +45,14 @@ public class BackgroundInsulinDose {
         return result;
     }
 
+    public String getWSName(int i) {
+        return links[i];
+    }
+
+    public int getWSResult(int i) {
+        return results[i];
+    }
+
     private void execution() {
         int i;
 
