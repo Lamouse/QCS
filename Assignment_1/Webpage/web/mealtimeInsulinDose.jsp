@@ -17,19 +17,69 @@
     <title>Simple JSP Calculator (Results)</title>
 </head>
 <body>
-<h2>The result of your request is:</h2>
-<%= back.getResult()%>
 
+<div class="alert alert-success" role="alert" style="margin:20px;">
+
+    <h3 style="margin-left: 10px">Number of insulin units: </h3>
+
+    <h2 style="margin-left: 10px"><%= back.getResult()%></h2>
+
+</div>
 
 <br>
 <br>
+<div class="container">
 
-<button id="myButton" class="float-left submit-button" >Back to Calculator</button>
+    <div class="col-sm-4">
+        <button class="btn btn-primary btn-lg" id="button" style="margin-left: 10px">Show technical information</button>
+    </div>
 
-<script type="text/javascript">
-    document.getElementById("myButton").onclick = function () {
-        location.href = "index.html";
-    };
+    <div class="col-sm-4">
+        <button id="myButton" class="btn btn-primary btn-lg" type="submit">Back to Calculator</button>
+    </div>
+    <script type="text/javascript">
+        document.getElementById("myButton").onclick = function () {
+            location.href = "index.html";
+        };
+    </script>
+
+</div>
+
+
+<div class="panel panel-info" id="details" style="display:none; margin:20px;">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Technical information</div>
+    <div class="panel-body">
+        <p>3 Web Services used in calculation</p>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+        <tr>
+            <th>Web Service</th>
+            <th>Result</th>
+        </tr>
+        <tr>
+            <td><%=back.getWSName(0)%></td>
+            <td><%=back.getWSResult(0)%></td>
+        </tr>
+        <tr>
+            <td><%=back.getWSName(1)%></td>
+            <td><%=back.getWSResult(1)%></td>
+        </tr>
+        <tr>
+            <td><%=back.getWSName(2)%></td>
+            <td><%=back.getWSResult(2)%></td>
+        </tr>
+    </table>
+</div>
+
+<script>
+
+    $("#button").click(function(){
+        $("#details").toggle();
+    });
+
 </script>
 
 </body>

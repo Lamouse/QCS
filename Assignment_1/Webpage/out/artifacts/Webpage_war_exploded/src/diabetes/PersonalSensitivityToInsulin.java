@@ -165,6 +165,16 @@ public class PersonalSensitivityToInsulin {
         this.drops = drops;
     }
 
+    public String getWSName(int i) {
+        return links[i];
+    }
+
+    public String getWSResult(int i) {
+        if (results[i] == -999)
+            return "Timeout";
+        return Integer.toString(results[i]);
+    }
+
     public int getResult() {
         int result = 0, i, temp;
 

@@ -101,6 +101,16 @@ public class MealtimeInsulinDose {
         }
     }
 
+    public String getWSName(int i) {
+        return links[i];
+    }
+
+    public String getWSResult(int i) {
+        if (results[i] == -999)
+            return "Timeout";
+        return Integer.toString(results[i]);
+    }
+
     public class Webservice extends Thread{
         private int result;
         private String wb;
