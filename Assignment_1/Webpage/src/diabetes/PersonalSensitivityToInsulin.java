@@ -24,7 +24,11 @@ public class PersonalSensitivityToInsulin {
     List<Integer> list2 = new ArrayList<Integer>();
 
     private int next = 0;
-    private String links[] = new String[] {"http://qcs12.dei.uc.pt:8080/insulin?wsdl", "http://liis-lab.dei.uc.pt:8080/Server?wsdl", "http://qcs01.dei.uc.pt:8080/InsulinDoseCalculator?wsdl"};
+    private String links[] = new String[] {"http://qcs12.dei.uc.pt:8080/insulin?wsdl", "http://liis-lab.dei.uc.pt:8080/Server?wsdl",
+            "http://qcs01.dei.uc.pt:8080/InsulinDoseCalculator?wsdl", "http://qcs02.dei.uc.pt:8080/insulinDosage?wsdl",
+            "http://qcs05.dei.uc.pt:8080/insulin?wsdl", "http://qcs06.dei.uc.pt:8080/insulin?wsdl", "http://qcs07.dei.uc.pt:8080/insulin?wsdl",
+            "http://qcs08.dei.uc.pt:8080/InsulinDoseCalculator?wsdl", "http://qcs10.dei.uc.pt:8080/InsulinDoseCalculator?wsdl",
+            "http://qcs11.dei.uc.pt:8080/insulin?wsdl", "http://qcs16.dei.uc.pt:8080/InsulinDoseCalculator?wsdl", "http://vm-sgd17.dei.uc.pt/InsulinDoseCalculator?wsdl"};
     private int n = 3;
     private int results[] = new int[n];
     private Webservice ws_threads[] = new Webservice[n];
@@ -166,7 +170,7 @@ public class PersonalSensitivityToInsulin {
     }
 
     public String getWSName(int i) {
-        return links[i];
+        return this.ws_threads[i].wb;
     }
 
     public String getWSResult(int i) {
@@ -175,7 +179,7 @@ public class PersonalSensitivityToInsulin {
         return Integer.toString(results[i]);
     }
 
-    public int getResult() {
+    public String getResult() {
         int result = 0, i, temp;
 
         for(i = 0; i < 3; i++) {
@@ -189,7 +193,9 @@ public class PersonalSensitivityToInsulin {
             }
         }
 
-        return result;
+        if(result==-999)
+            return "Timeout";
+        return Integer.toString(result);
     }
 
     private void execution() {

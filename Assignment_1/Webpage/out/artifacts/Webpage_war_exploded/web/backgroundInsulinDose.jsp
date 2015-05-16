@@ -15,8 +15,8 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-    <jsp:useBean id="back" class="diabetes.BackgroundInsulinDose" scope="application"/>
-    <jsp:setProperty name="back" property="*"/>
+    <jsp:useBean id="back3" class="diabetes.BackgroundInsulinDose" scope="application"/>
+    <jsp:setProperty name="back3" property="*"/>
 
     <title>Background Insulin Calculator (Results)</title>
 </head>
@@ -26,7 +26,7 @@
 
     <h3 style="margin-left: 10px">Number of insulin units: </h3>
 
-    <h2 style="margin-left: 10px"><%= back.getResult()%></h2>
+    <h2 style="margin-left: 10px"><%= back3.getResult()%></h2>
 
 </div>
 
@@ -64,16 +64,16 @@
             <th>Result</th>
         </tr>
         <tr>
-            <td><%= back.getWSName(0)%></td>
-            <td><%= back.getWSResult(0)%></td>
+            <td><%= back3.getWSName(0)%></td>
+            <td><%= back3.getWSResult(0)%></td>
         </tr>
         <tr>
-            <td><%= back.getWSName(1)%></td>
-            <td><%= back.getWSResult(1)%></td>
+            <td><%= back3.getWSName(1)%></td>
+            <td><%= back3.getWSResult(1)%></td>
         </tr>
         <tr>
-            <td><%= back.getWSName(2)%></td>
-            <td><%= back.getWSResult(2)%></td>
+            <td><%= back3.getWSName(2)%></td>
+            <td><%= back3.getWSResult(2)%></td>
         </tr>
     </table>
 </div>
