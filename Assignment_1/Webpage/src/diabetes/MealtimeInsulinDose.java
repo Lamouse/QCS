@@ -72,7 +72,7 @@ public class MealtimeInsulinDose {
 
             temp = Voter.voter(this.results, this.n);
 
-            if (temp != -990) {
+            if (temp != -999) {
                 result = temp;
                 break;
             }

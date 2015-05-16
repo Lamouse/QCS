@@ -64,16 +64,16 @@
             <th>Result</th>
         </tr>
         <tr>
-            <td><%=back.getWSName(0)%></td>
-            <td><%=back.getWSResult(0)%></td>
+            <td><%= back.getWSName(0)%></td>
+            <td><%= back.getWSResult(0)%></td>
         </tr>
         <tr>
-            <td><%=back.getWSName(1)%></td>
-            <td><%=back.getWSResult(1)%></td>
+            <td><%= back.getWSName(1)%></td>
+            <td><%= back.getWSResult(1)%></td>
         </tr>
         <tr>
-            <td><%=back.getWSName(2)%></td>
-            <td><%=back.getWSResult(2)%></td>
+            <td><%= back.getWSName(2)%></td>
+            <td><%= back.getWSResult(2)%></td>
         </tr>
     </table>
 </div>

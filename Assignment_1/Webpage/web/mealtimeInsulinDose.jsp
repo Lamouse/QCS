@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: jpedrom
-  Date: 11/05/15
-  Time: 22:43
+  User: paulo
+  Date: 11-05-2015
+  Time: 14:26
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -11,10 +11,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
     <jsp:useBean id="back" class="diabetes.MealtimeInsulinDose" scope="application"/>
     <jsp:setProperty name="back" property="*"/>
 
-    <title>Simple JSP Calculator (Results)</title>
+    <title>Mealtime Insuline Dose - Standard Insulin Sensitivity (Results)</title>
 </head>
 <body>
 
@@ -60,16 +64,16 @@
             <th>Result</th>
         </tr>
         <tr>
-            <td><%=back.getWSName(0)%></td>
-            <td><%=back.getWSResult(0)%></td>
+            <td><%= back.getWSName(0)%></td>
+            <td><%= back.getWSResult(0)%></td>
         </tr>
         <tr>
-            <td><%=back.getWSName(1)%></td>
-            <td><%=back.getWSResult(1)%></td>
+            <td><%= back.getWSName(1)%></td>
+            <td><%= back.getWSResult(1)%></td>
         </tr>
         <tr>
-            <td><%=back.getWSName(2)%></td>
-            <td><%=back.getWSResult(2)%></td>
+            <td><%= back.getWSName(2)%></td>
+            <td><%= back.getWSResult(2)%></td>
         </tr>
     </table>
 </div>
@@ -81,6 +85,7 @@
     });
 
 </script>
+
 
 </body>
 </html>
