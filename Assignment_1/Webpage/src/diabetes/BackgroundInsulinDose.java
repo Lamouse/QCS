@@ -15,7 +15,6 @@ public class BackgroundInsulinDose {
     private int input3_1;       /*weight*/
     private int next = 0;
     private String links[] = new String[] {"http://qcs12.dei.uc.pt:8080/insulin?wsdl", "http://liis-lab.dei.uc.pt:8080/Server?wsdl", "http://qcs01.dei.uc.pt:8080/InsulinDoseCalculator?wsdl"};
-    private int number_Ws = 3;
     private int n = 3;
     private int results[] = new int[n];
     private Webservice ws_threads[] = new Webservice[n];
@@ -58,7 +57,7 @@ public class BackgroundInsulinDose {
 
         for(i = 0; i < n; i++) {
             ws_threads[i] = new Webservice(this.links[next]);
-            next = (next + 1) % number_Ws;
+            next = (next + 1) % links.length;
             ws_threads[i].start();
         }
 

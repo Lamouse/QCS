@@ -4,6 +4,8 @@ import com.sun.xml.internal.ws.client.BindingProviderProperties;
 
 import javax.xml.ws.BindingProvider;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -18,22 +20,93 @@ public class PersonalSensitivityToInsulin {
     private int input2_5;       /*Today’s physical activity level*/
     private int[] physical;
     private int[] drops;
-    private int l1_3;
+    List<Integer> list1 = new ArrayList<Integer>();
+    List<Integer> list2 = new ArrayList<Integer>();
 
     private int next = 0;
     private String links[] = new String[] {"http://qcs12.dei.uc.pt:8080/insulin?wsdl", "http://liis-lab.dei.uc.pt:8080/Server?wsdl", "http://qcs01.dei.uc.pt:8080/InsulinDoseCalculator?wsdl"};
-    private int number_Ws = 3;
     private int n = 3;
     private int results[] = new int[n];
     private Webservice ws_threads[] = new Webservice[n];
 
-    public int getL1_3() {
-        return l1_3;
+    public void setL1_1(int l1_1) {
+        list1.add(l1_1);
     }
 
-    public void setL1_3(int l1_3) {
-        System.out.println(l1_3);
-        this.l1_3 = l1_3;
+    public void setL1_2(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL1_3(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL1_4(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL1_5(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL1_6(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL1_7(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL1_8(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL1_9(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL1_10(int l1_1) {
+        list1.add(l1_1);
+    }
+
+    public void setL2_1(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_2(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_3(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_4(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_5(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_6(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_7(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_8(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_9(int l1_1) {
+        list2.add(l1_1);
+    }
+
+    public void setL2_10(int l1_1) {
+        list2.add(l1_1);
     }
 
     public int getInput2_1() {
@@ -95,7 +168,7 @@ public class PersonalSensitivityToInsulin {
     public int getResult() {
         int result = 0, i, temp;
 
-        /*for(i = 0; i < 3; i++) {
+        for(i = 0; i < 3; i++) {
             execution();
 
             temp = Voter.voter(this.results, this.n);
@@ -104,13 +177,7 @@ public class PersonalSensitivityToInsulin {
                 result = temp;
                 break;
             }
-        }*/
-        /*System.out.println(getInput2_1()+" "+getInput2_2()+" "+getInput2_3()+" "+getInput2_4()+" "+getInput2_5());
-
-
-        for(i=0; i<this.drops.length; i++){
-            System.out.println(this.drops[i]);
-        }*/
+        }
 
         return result;
     }
@@ -120,7 +187,7 @@ public class PersonalSensitivityToInsulin {
 
         for(i = 0; i < n; i++) {
             ws_threads[i] = new Webservice(this.links[next]);
-            next = (next + 1) % number_Ws;
+            next = (next + 1) % links.length;
             ws_threads[i].start();
         }
 
@@ -149,6 +216,8 @@ public class PersonalSensitivityToInsulin {
         }
 
         public void run(){
+            int insulin;
+
             try {
                 //if (wb == 0) {
                 diabetes.qcs12.InsulinDoseCalculatorService service = new diabetes.qcs12.InsulinDoseCalculatorService(new URL(this.wb));
@@ -156,9 +225,10 @@ public class PersonalSensitivityToInsulin {
 
                 //((BindingProvider) proxy).getRequestContext().put("javax.xml.ws.client.connectionTimeout", "100");
                 Map<String, Object> temp = ((BindingProvider) proxy).getRequestContext();
-                temp.put(BindingProviderProperties.REQUEST_TIMEOUT, 1000);
-                temp.put(BindingProviderProperties.CONNECT_TIMEOUT, 1000);
-                result = proxy.backgroundInsulinDose(getInput2_1());
+                temp.put(BindingProviderProperties.REQUEST_TIMEOUT, 500);
+                temp.put(BindingProviderProperties.CONNECT_TIMEOUT, 500);
+                insulin = proxy.personalSensitivityToInsulin(input2_5, list1, list2);
+                result = proxy.mealtimeInsulinDose(input2_1, input2_2, input2_3, input2_4, insulin);
                 /*} else if (wb == 1) {
                     diabetes.liis_lab.InsulinDoseCalculatorService service = new diabetes.liis_lab.InsulinDoseCalculatorService();
                     diabetes.liis_lab.InsulinDoseCalculator proxy = service.getInsulinDoseCalculatorPort();
