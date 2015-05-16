@@ -13,7 +13,7 @@ proctype P(int n) {
 	:: temp = 2;
 	:: temp = 3;
 	:: temp = 5;
-	:: temp = (timeout);
+	:: temp = (false);
 	fi
 
 	if
@@ -78,12 +78,6 @@ inline voter(index, i, j, count) {
 		::else -> skip;
 		fi
 	}
-
-	// printf("\n\nFinal Result: ");
-	// if 
-	// ::j == 999 -> printf("Unable to find results\n");
-	// ::else -> printf("%d\n", j);
-	// fi
 }
 
 init {
@@ -96,7 +90,7 @@ init {
 		}
 	}
 
-	(_nr_pr == 1);
+	(_nr_pr == 1) || (timeout);
 
 
 	//take care of timeouts
@@ -106,7 +100,7 @@ init {
 
 		voter(index, i, j, count);
 		if
-		::j != 999 && j != 0 -> printf("\n\nFinal Result:\t%d\n", j); break;
+		::j != 999 && j != 0 -> break;
 		::else -> rep = 1;
 		fi
 
@@ -121,11 +115,14 @@ init {
 			}
 		}
 
-		(_nr_pr == 1);
+		(_nr_pr == 1) || (timeout);
 	}
+
+	//timeout || resultado ñ maioritario || resposta certa || resposta certa || resposta errada
+	assert(j==0 || j==999 || j==2 || j==3 || j==5)
 
 	if
 	::j == 999 || j == 0 -> printf("\n\nFinal Result:\tUnable to find results\n");
-	::else -> skip;
+	::else -> printf("\n\nFinal Result:\t%d\n", j); ;
 	fi
 }
