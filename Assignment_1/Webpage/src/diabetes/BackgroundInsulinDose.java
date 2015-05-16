@@ -35,6 +35,8 @@ public class BackgroundInsulinDose {
     public String getResult() {
         int result = 0, i, temp;
 
+        this.next = 0;
+
         for(i = 0; i < 3; i++) {
             execution();
 

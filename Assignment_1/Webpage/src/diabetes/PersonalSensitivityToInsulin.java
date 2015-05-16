@@ -18,12 +18,10 @@ public class PersonalSensitivityToInsulin {
     private int input2_3;       /*Actual blood sugar level measured before the meal*/
     private int input2_4;       /*Target blood sugar before the meal*/
     private int input2_5;       /*Today’s physical activity level*/
-    private int[] physical;
-    private int[] drops;
-    List<Integer> list1 = new ArrayList<Integer>();
-    List<Integer> list2 = new ArrayList<Integer>();
+    List<Integer> list1;
+    List<Integer> list2;
 
-    private int next = 0;
+    private int next;
     private String links[] = new String[] {"http://qcs12.dei.uc.pt:8080/insulin?wsdl", "http://liis-lab.dei.uc.pt:8080/Server?wsdl",
             "http://qcs01.dei.uc.pt:8080/InsulinDoseCalculator?wsdl", "http://qcs02.dei.uc.pt:8080/insulinDosage?wsdl",
             "http://qcs05.dei.uc.pt:8080/insulin?wsdl", "http://qcs06.dei.uc.pt:8080/insulin?wsdl", "http://qcs07.dei.uc.pt:8080/insulin?wsdl",
@@ -34,6 +32,7 @@ public class PersonalSensitivityToInsulin {
     private Webservice ws_threads[] = new Webservice[n];
 
     public void setL1_1(int l1_1) {
+        list1 = new ArrayList<Integer>();
         list1.add(l1_1);
     }
 
@@ -74,6 +73,7 @@ public class PersonalSensitivityToInsulin {
     }
 
     public void setL2_1(int l1_1) {
+        list2 = new ArrayList<Integer>();
         list2.add(l1_1);
     }
 
@@ -153,22 +153,6 @@ public class PersonalSensitivityToInsulin {
         this.input2_5 = input2_5;
     }
 
-    public int[] getPhysical() {
-        return physical;
-    }
-
-    public void setPhysical(int[] physical) {
-        this.physical = physical;
-    }
-
-    public int[] getDrops() {
-        return drops;
-    }
-
-    public void setDrops(int[] drops) {
-        this.drops = drops;
-    }
-
     public String getWSName(int i) {
         return this.ws_threads[i].wb;
     }
@@ -182,12 +166,14 @@ public class PersonalSensitivityToInsulin {
     public String getResult() {
         int result = 0, i, temp;
 
+        this.next = 0;
+
         for(i = 0; i < 3; i++) {
             execution();
 
             temp = Voter.voter(this.results, this.n);
 
-            if (temp != -990) {
+            if (temp != -999) {
                 result = temp;
                 break;
             }
