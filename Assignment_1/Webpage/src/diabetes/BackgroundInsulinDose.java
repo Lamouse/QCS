@@ -48,7 +48,7 @@ public class BackgroundInsulinDose {
             }
         }
         if(result==-999)
-            return "Timeout";
+            return "Unable to find any result";
         return Integer.toString(result);
     }
 

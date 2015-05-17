@@ -123,7 +123,7 @@ init {
 	assert(j==0 || j==999 || j==2 || j==3 || j==5)
 
 	if
-	::j == 999 || j == 0 -> printf("\n\nFinal Result:\tUnable to find results\n");
+	::j == 999 || j == 0 -> printf("\n\nFinal Result:\tUnable to find any result\n");
 	::else -> printf("\n\nFinal Result:\t%d\n", j); ;
 	fi
 }
