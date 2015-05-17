@@ -656,16 +656,16 @@
 		reached[1][97] = 1;
 		;
 		_m = 3; goto P999; /* 1 */
-	case 47: // STATE 100 - voter.pml:103 - [(((j!=999)&&(j!=0)))] (133:0:0 - 1)
+	case 47: // STATE 100 - voter.pml:103 - [(((j!=999)&&(j!=0)))] (134:0:0 - 1)
 		IfNotBlocked
 		reached[1][100] = 1;
 		if (!(((((P1 *)this)->j!=999)&&(((P1 *)this)->j!=0))))
 			continue;
-		/* merge: goto :b1(133, 101, 133) */
+		/* merge: goto :b1(134, 101, 134) */
 		reached[1][101] = 1;
 		;
-		/* merge: assert((((((j==0)||(j==999))||(j==2))||(j==3))||(j==5)))(133, 128, 133) */
-		reached[1][128] = 1;
+		/* merge: assert((((((j==0)||(j==999))||(j==2))||(j==3))||(j==5)))(134, 129, 134) */
+		reached[1][129] = 1;
 		spin_assert((((((((P1 *)this)->j==0)||(((P1 *)this)->j==999))||(((P1 *)this)->j==2))||(((P1 *)this)->j==3))||(((P1 *)this)->j==5)), "(((((j==0)||(j==999))||(j==2))||(j==3))||(j==5))", II, tt, t);
 		_m = 3; goto P999; /* 2 */
 	case 48: // STATE 103 - voter.pml:104 - [rep = 1] (0:0:1 - 1)
@@ -745,24 +745,30 @@
 		if (!(((((int)now._nr_pr)==1)||((trpt->tau)&1))))
 			continue;
 		_m = 1; goto P999; /* 0 */
-	case 56: // STATE 122 - voter.pml:98 - [y = (y+1)] (0:0:1 - 1)
+	case 56: // STATE 122 - voter.pml:119 - [assert(((j==0)||(j==999)))] (0:126:1 - 1)
 		IfNotBlocked
 		reached[1][122] = 1;
+		spin_assert(((((P1 *)this)->j==0)||(((P1 *)this)->j==999)), "((j==0)||(j==999))", II, tt, t);
+		/* merge: y = (y+1)(126, 123, 126) */
+		reached[1][123] = 1;
 		(trpt+1)->bup.oval = ((P1 *)this)->y;
 		((P1 *)this)->y = (((P1 *)this)->y+1);
 #ifdef VAR_RANGES
 		logval(":init::y", ((P1 *)this)->y);
 #endif
 		;
-		_m = 3; goto P999; /* 0 */
-	case 57: // STATE 128 - voter.pml:122 - [assert((((((j==0)||(j==999))||(j==2))||(j==3))||(j==5)))] (0:133:0 - 5)
-		IfNotBlocked
-		reached[1][128] = 1;
-		spin_assert((((((((P1 *)this)->j==0)||(((P1 *)this)->j==999))||(((P1 *)this)->j==2))||(((P1 *)this)->j==3))||(((P1 *)this)->j==5)), "(((((j==0)||(j==999))||(j==2))||(j==3))||(j==5))", II, tt, t);
-		_m = 3; goto P999; /* 0 */
-	case 58: // STATE 129 - voter.pml:125 - [(((j==999)||(j==0)))] (135:0:1 - 1)
+		/* merge: .(goto)(0, 127, 126) */
+		reached[1][127] = 1;
+		;
+		_m = 3; goto P999; /* 2 */
+	case 57: // STATE 129 - voter.pml:123 - [assert((((((j==0)||(j==999))||(j==2))||(j==3))||(j==5)))] (0:134:0 - 5)
 		IfNotBlocked
 		reached[1][129] = 1;
+		spin_assert((((((((P1 *)this)->j==0)||(((P1 *)this)->j==999))||(((P1 *)this)->j==2))||(((P1 *)this)->j==3))||(((P1 *)this)->j==5)), "(((((j==0)||(j==999))||(j==2))||(j==3))||(j==5))", II, tt, t);
+		_m = 3; goto P999; /* 0 */
+	case 58: // STATE 130 - voter.pml:126 - [(((j==999)||(j==0)))] (136:0:1 - 1)
+		IfNotBlocked
+		reached[1][130] = 1;
 		if (!(((((P1 *)this)->j==999)||(((P1 *)this)->j==0))))
 			continue;
 		if (TstOnly) return 1; /* TT */
@@ -771,21 +777,21 @@
 		if (!readtrail)
 #endif
 			((P1 *)this)->j = 0;
-		/* merge: printf('\\n\\nFinal Result:\\tUnable to find results\\n')(0, 130, 135) */
-		reached[1][130] = 1;
-		Printf("\n\nFinal Result:\tUnable to find results\n");
-		/* merge: .(goto)(0, 134, 135) */
-		reached[1][134] = 1;
+		/* merge: printf('\\n\\nFinal Result:\\tUnable to find any result\\n')(0, 131, 136) */
+		reached[1][131] = 1;
+		Printf("\n\nFinal Result:\tUnable to find any result\n");
+		/* merge: .(goto)(0, 135, 136) */
+		reached[1][135] = 1;
 		;
 		_m = 3; goto P999; /* 2 */
-	case 59: // STATE 132 - voter.pml:126 - [printf('\\n\\nFinal Result:\\t%d\\n',j)] (0:0:0 - 1)
+	case 59: // STATE 133 - voter.pml:127 - [printf('\\n\\nFinal Result:\\t%d\\n',j)] (0:0:0 - 1)
 		IfNotBlocked
-		reached[1][132] = 1;
+		reached[1][133] = 1;
 		Printf("\n\nFinal Result:\t%d\n", ((P1 *)this)->j);
 		_m = 3; goto P999; /* 0 */
-	case 60: // STATE 135 - voter.pml:128 - [-end-] (0:0:0 - 3)
+	case 60: // STATE 136 - voter.pml:129 - [-end-] (0:0:0 - 3)
 		IfNotBlocked
-		reached[1][135] = 1;
+		reached[1][136] = 1;
 		if (!delproc(1, II)) continue;
 		_m = 3; goto P999; /* 0 */
 

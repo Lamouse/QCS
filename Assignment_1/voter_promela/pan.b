@@ -292,17 +292,17 @@
 ;
 		;
 		
-	case 56: // STATE 122
+	case 56: // STATE 123
 		;
 		((P1 *)this)->y = trpt->bup.oval;
 		;
 		goto R999;
 ;
 		
-	case 57: // STATE 128
+	case 57: // STATE 129
 		goto R999;
 
-	case 58: // STATE 129
+	case 58: // STATE 130
 		;
 	/* 0 */	((P1 *)this)->j = trpt->bup.oval;
 		;
@@ -311,7 +311,7 @@
 ;
 		;
 		
-	case 60: // STATE 135
+	case 60: // STATE 136
 		;
 		p_restor(II);
 		;

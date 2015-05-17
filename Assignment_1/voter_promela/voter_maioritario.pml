@@ -128,7 +128,7 @@ init {
 		}
 
 		(_nr_pr == 1) || (timeout);
-		assert(j==0 || j==999 || j==2 || j==3 || j==5)
+		assert(j==0 || j==999)
 	}
 
 	//timeout || resultado ñ maioritario || resposta certa || resposta certa || resposta errada

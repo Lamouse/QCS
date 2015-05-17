@@ -130,10 +130,10 @@ typedef struct S_F_MAP {
 	int upto;
 } S_F_MAP;
 
-#define nstates1	136	/* :init: */
+#define nstates1	137	/* :init: */
 #define minseq1	13
-#define maxseq1	147
-#define endstate1	135
+#define maxseq1	148
+#define endstate1	136
 
 #define nstates0	14	/* P */
 #define minseq0	0
